@@ -57,5 +57,5 @@ const PJS = [
 
 /* ─── ATTACH PROJECT IMAGES ─── */
 PJS.forEach(p => {
-  try { p.img = eval(p.imgK); } catch(e) { p.img = ''; }
+  p.img = (typeof window !== 'undefined' && window[p.imgK]) || '';
 });
