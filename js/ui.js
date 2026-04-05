@@ -238,6 +238,11 @@ document.addEventListener('keydown', e => {
 });
 
 /* ─── CONTACT FORM ─── */
+function openMailtoFallback(name, email, msg) {
+  window.location.href = `mailto:hussein27007@gmail.com?subject=Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(msg + '\n\nFrom: ' + email)}`;
+  showToast('Opening your email app…');
+}
+
 async function submitForm(e) {
   e.preventDefault();
   const btn = document.getElementById('fsub');
@@ -268,12 +273,10 @@ async function submitForm(e) {
         gsap.to(p, {y: -(180 + Math.random() * 200), x: (Math.random() - .5) * 200, opacity: 0, duration: 1.2 + Math.random() * .8, ease: 'power2.out', onComplete: () => p.remove()});
       }
     } else {
-      window.location.href = `mailto:hussein27007@gmail.com?subject=Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(msg + '\n\nFrom: ' + email)}`;
-      showToast('Opening your email app…');
+      openMailtoFallback(name, email, msg);
     }
   } catch (err) {
-    window.location.href = `mailto:hussein27007@gmail.com?subject=Message from ${encodeURIComponent(name)}&body=${encodeURIComponent(msg + '\n\nFrom: ' + email)}`;
-    showToast('Opening your email app…');
+    openMailtoFallback(name, email, msg);
   }
   btn.textContent = 'Send Message →';
   btn.classList.remove('sending');
