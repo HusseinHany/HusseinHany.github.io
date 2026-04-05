@@ -13,7 +13,7 @@ function showToast(msg, err = false) {
 }
 
 /* ─── CHARACTER COUNTER FOR TEXTAREA ─── */
-function updCount(el) {
+function updateCharCount(el) {
   if (el.value.length > 500) el.value = el.value.slice(0, 500);
   document.getElementById('fct').textContent = Math.min(el.value.length, 500);
 }

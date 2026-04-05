@@ -90,24 +90,31 @@ function toggleTheme() {
 /* ─── SKILL TABS ─── */
 let curTab = 0;
 
-function swTab(i, btn) {
+function switchTab(i, btn) {
   curTab = i;
-  document.querySelectorAll('.tbtn').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('.tbtn').forEach(b => {
+    b.classList.remove('on');
+    b.setAttribute('aria-selected', 'false');
+  });
   btn.classList.add('on');
-  renderTab();
-  gsap.fromTo('.sk-chip',
-    {opacity: 0, scale: .82, y: 12},
-    {opacity: 1, scale: 1, y: 0, duration: .35, stagger: .045, ease: 'back.out(2)'}
-  );
+  btn.setAttribute('aria-selected', 'true');
+  renderSkillTab();
+  const chips = document.querySelectorAll('.sk-chip');
+  if (chips.length) {
+    gsap.fromTo('.sk-chip',
+      {opacity: 0, scale: .82, y: 12},
+      {opacity: 1, scale: 1, y: 0, duration: .35, stagger: .045, ease: 'back.out(2)'}
+    );
+  }
 }
 
-function renderTab() {
+function renderSkillTab() {
   document.getElementById('tab-c').innerHTML =
     `<div class="sk-grid">${TABS[curTab].s.map(s =>
       `<div class="sk-chip"><span class="sk-icon" aria-hidden="true">${s.i}</span><span>${s.n}</span></div>`
     ).join('')}</div>`;
 }
-renderTab();
+renderSkillTab();
 
 /* ─── MARQUEE ─── */
 (function initMarquee() {
@@ -146,13 +153,13 @@ renderTab();
 /* ─── PROJECTS ─── */
 let activeCat = 'All';
 
-function renderPjs() {
+function renderProjects() {
   const list = activeCat === 'All' ? PJS : PJS.filter(p => p.cat === activeCat);
   const g = document.getElementById('pj-g');
   g.innerHTML = list.map(p => `
-    <article class="pj-card" onclick="openMod(${p.id})" tabindex="0"
+    <article class="pj-card" onclick="openModal(${p.id})" tabindex="0"
       role="button" aria-label="View details for ${p.title}"
-      onkeydown="if(event.key==='Enter'||event.key===' ')openMod(${p.id})">
+      onkeydown="if(event.key==='Enter'||event.key===' ')openModal(${p.id})">
       ${p.feat ? '<div class="feat-b" aria-label="Featured project">★ Featured</div>' : ''}
       <div class="pj-img-w">
         <img src="${p.img}" alt="${p.title} project preview" class="pj-img" loading="lazy"/>
@@ -183,19 +190,20 @@ function renderPjs() {
   }
   gsap.fromTo('.pj-card', {opacity: 0, y: 28}, {opacity: 1, y: 0, duration: .5, stagger: .09, ease: 'power2.out'});
 }
-renderPjs();
+renderProjects();
 
 document.querySelectorAll('.fp').forEach(p => {
   p.addEventListener('click', function() {
-    document.querySelectorAll('.fp').forEach(x => x.classList.remove('on'));
+    document.querySelectorAll('.fp').forEach(x => { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
     this.classList.add('on');
+    this.setAttribute('aria-pressed', 'true');
     activeCat = this.dataset.c;
-    gsap.to('.pj-card', {opacity: 0, y: 16, scale: .97, duration: .2, stagger: .04, onComplete: renderPjs});
+    gsap.to('.pj-card', {opacity: 0, y: 16, scale: .97, duration: .2, stagger: .04, onComplete: renderProjects});
   });
 });
 
 /* ─── MODAL ─── */
-function openMod(id) {
+function openModal(id) {
   const p = PJS.find(x => x.id === id);
   if (!p) return;
   document.getElementById('m-img').src = p.img;
@@ -214,11 +222,11 @@ function openMod(id) {
   document.getElementById('m-close-btn').focus();
 }
 
-function closeMod(e) {
-  if (e.target === document.getElementById('modal')) closeModBtn();
+function closeModal(e) {
+  if (e.target === document.getElementById('modal')) closeModalBtn();
 }
 
-function closeModBtn() {
+function closeModalBtn() {
   const modal = document.getElementById('modal');
   modal.classList.remove('show');
   modal.setAttribute('aria-hidden', 'true');
@@ -226,7 +234,7 @@ function closeModBtn() {
 }
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeModBtn();
+  if (e.key === 'Escape') closeModalBtn();
 });
 
 /* ─── CONTACT FORM ─── */
