@@ -448,7 +448,7 @@ h1.hname{
 .ph-btn{
   padding:.48rem 1.1rem;border:1px solid rgba(0,200,150,.55);
   border-radius:50px;color:var(--em);background:rgba(0,200,150,.12);
-  font-size:.76rem;transition:all .25s;
+  font-size:.76rem;
   transform:translateY(6px);opacity:0;transition:all .3s cubic-bezier(.4,0,.2,1);
 }
 .pj-card:hover .ph-btn{transform:none;opacity:1}
@@ -660,9 +660,9 @@ footer a:hover{color:var(--em3)}
 ═══════════════════════════════════════════ */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{
-    animation-duration:.01ms !important;
+    animation-duration:1ms !important;
     animation-iteration-count:1 !important;
-    transition-duration:.01ms !important;
+    transition-duration:1ms !important;
   }
   html{scroll-behavior:auto}
 }
