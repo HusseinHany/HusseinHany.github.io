@@ -56,6 +56,7 @@ window.addEventListener('load', () => {
   ScrollTrigger.create({
     trigger: '#about',
     start: 'top 80%',
+    once: true,
     onEnter: () => {
       gsap.fromTo('#about .eyebrow, #about .sec-h, #about .divider, #about .bio',
         {opacity: 0, y: 24},
@@ -68,6 +69,7 @@ window.addEventListener('load', () => {
   ScrollTrigger.create({
     trigger: '#sbars',
     start: 'top 82%',
+    once: true,
     onEnter: () => {
       gsap.fromTo('#sbars .bars-card',
         {opacity: 0, y: 32},
@@ -80,6 +82,7 @@ window.addEventListener('load', () => {
   ScrollTrigger.create({
     trigger: '#projects',
     start: 'top 82%',
+    once: true,
     onEnter: () => {
       gsap.fromTo('#projects .rv',
         {opacity: 0, y: 28},
@@ -92,6 +95,7 @@ window.addEventListener('load', () => {
   ScrollTrigger.create({
     trigger: '#contact',
     start: 'top 82%',
+    once: true,
     onEnter: () => {
       gsap.fromTo('#contact .rv-l',
         {opacity: 0, x: -28},
