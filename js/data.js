@@ -27,25 +27,29 @@ const PJS = [
    desc:'C++ OOP system with custom Data Structures & Algorithms for financial forecasting, integrated with Power BI & Excel.',
    full:'Built with C++ and OOP principles, utilizing custom Data Structures and Algorithms for financial forecasting. Features real-time expense tracking, income categorization, investment portfolio analysis, and predictive financial modeling.',
    hl:['Real-time expense tracking','Investment portfolio analysis','Predictive financial modeling','Excel & Power BI integration'],
-   imgK:'IMG_PROJ5',tech:['C++','OOP','Data Structures','Algorithms','Excel','Power BI'],
+   imgK:'IMG_PROJ5',imgUrl:'https://github.com/user-attachments/assets/144e0cdb-fff9-4c06-aebe-652ab2470d84',
+   tech:['C++','OOP','Data Structures','Algorithms','Excel','Power BI'],
    github:'https://github.com/HusseinHany',live:'https://github.com/HusseinHany'},
   {id:2,title:'Bank Management System',cat:'C++ Engineering',feat:false,
    desc:'Secure C++ backend with authentication and transactional logic ensuring full data integrity.',
    full:'Features Secure Authentication and robust Transactional Logic powered by a C++ backend, ensuring data integrity and system reliability. Implements OOP design patterns and efficient data structures.',
    hl:['Secure authentication','Transaction processing','Loan management','Financial reporting'],
-   imgK:'IMG_PROJ4',tech:['C++','OOP','Data Structures','Algorithms'],
+   imgK:'IMG_PROJ4',imgUrl:'https://github.com/user-attachments/assets/dfb4035c-1d28-426b-88da-84a7c4601194',
+   tech:['C++','OOP','Data Structures','Algorithms'],
    github:'https://github.com/HusseinHany',live:'https://github.com/HusseinHany'},
   {id:3,title:'Sales Performance Analytics',cat:'Data Analytics',feat:true,
    desc:'Predictive analytics and regional trend forecasting delivering actionable KPI dashboards.',
    full:'Incorporates Predictive Analytics and Regional Trend Forecasting to deliver actionable data storytelling. Built using Power BI for dynamic visualizations, Excel for data preprocessing, and SQL for database management.',
    hl:['Real-time KPI monitoring','Regional comparison','Customer segmentation','Drill-down capabilities'],
-   imgK:'IMG_PROJ3',tech:['Power BI','SQL','Excel','Data Analysis'],
+   imgK:'IMG_PROJ3',imgUrl:'https://github.com/user-attachments/assets/153093c3-9bbb-4e57-8617-e0a6508121bf',
+   tech:['Power BI','SQL','Excel','Data Analysis'],
    github:'https://github.com/HusseinHany/Sales',live:'https://github.com/HusseinHany/Sales'},
   {id:4,title:'Candy Line Sales Overview',cat:'Data Analytics',feat:false,
    desc:'Geographical sales mapping with predictive analytics and automated KPI tracking.',
    full:'Incorporates Predictive Analytics and Regional Trend Forecasting. Developed using Power BI for advanced visualizations, SQL for data extraction, and Excel for statistical analysis.',
    hl:['Profit margin analysis','Geographical mapping','Seasonal trend forecasting','Automated KPI tracking'],
-   imgK:'IMG_PROJ1',tech:['Power BI','SQL','Excel','Statistical Analysis'],
+   imgK:'IMG_PROJ1',imgUrl:'https://github.com/user-attachments/assets/adb7374c-3604-4440-86e0-e6fd68b80ea4',
+   tech:['Power BI','SQL','Excel','Statistical Analysis'],
    github:'https://github.com/HusseinHany/Sales',live:'https://github.com/HusseinHany/Sales'},
   {id:5,title:'InsightFlow Dashboard',cat:'Data Analytics',feat:false,
    desc:'Smart sales & profit dashboard with predictive modeling, city-level breakdowns, and interactive charts.',
@@ -57,5 +61,5 @@ const PJS = [
 
 /* ─── ATTACH PROJECT IMAGES ─── */
 PJS.forEach(p => {
-  p.img = (typeof window !== 'undefined' && window[p.imgK]) || '';
+  p.img = p.imgUrl || (typeof window !== 'undefined' && window[p.imgK]) || '';
 });
