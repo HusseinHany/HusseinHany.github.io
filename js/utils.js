@@ -1,6 +1,15 @@
-/* ─── SMOOTH SCROLL TO SECTION ─── */
+/* ─── SMOOTH SCROLL TO SECTION (accounts for fixed nav height) ─── */
 function goTo(id) {
-  document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navH = document.getElementById('nav')?.offsetHeight || 72;
+  const top = el.getBoundingClientRect().top + window.scrollY - (id === 'hero' ? 0 : navH);
+  window.scrollTo({top: Math.max(0, top), behavior: 'smooth'});
+}
+
+/* ─── BACK TO TOP ─── */
+function scrollToTop() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 /* ─── TOAST NOTIFICATION ─── */
