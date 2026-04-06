@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
   try { document.getElementById('pimg').src = IMG_PHOTO; } catch(e) {}
 
   /* Orbs fade in */
-  gsap.to('.orb', {opacity: 1, duration: 2.5, stagger: .4, ease: 'power2.out'});
+  gsap.to('.orb', {opacity: 1, duration: 2.8, stagger: .45, ease: 'power2.out'});
 
   /* Sequence */
   const seq = [
@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
   /* Counters */
   document.querySelectorAll('.stat-n').forEach(el => {
     const t = +el.dataset.t;
-    gsap.to({v: 0}, {v: t, duration: 2.2, delay: 2, ease: 'power2.out',
+    gsap.to({v: 0}, {v: t, duration: 2.4, delay: 2.1, ease: 'power2.out',
       onUpdate: function() { el.textContent = Math.round(this.targets()[0].v) + '+'; }
     });
   });
@@ -50,6 +50,59 @@ window.addEventListener('load', () => {
     setTimeout(type, del ? 36 : 65);
   }
   setTimeout(type, 2100);
+
+  /* ─── SCROLLTRIGGER SECTION ANIMATIONS ─── */
+  /* About section */
+  ScrollTrigger.create({
+    trigger: '#about',
+    start: 'top 80%',
+    onEnter: () => {
+      gsap.fromTo('#about .eyebrow, #about .sec-h, #about .divider, #about .bio',
+        {opacity: 0, y: 24},
+        {opacity: 1, y: 0, duration: .7, stagger: .12, ease: 'power3.out', overwrite: 'auto'}
+      );
+    }
+  });
+
+  /* Skills bars section */
+  ScrollTrigger.create({
+    trigger: '#sbars',
+    start: 'top 82%',
+    onEnter: () => {
+      gsap.fromTo('#sbars .bars-card',
+        {opacity: 0, y: 32},
+        {opacity: 1, y: 0, duration: .7, ease: 'power3.out'}
+      );
+    }
+  });
+
+  /* Projects section */
+  ScrollTrigger.create({
+    trigger: '#projects',
+    start: 'top 82%',
+    onEnter: () => {
+      gsap.fromTo('#projects .rv',
+        {opacity: 0, y: 28},
+        {opacity: 1, y: 0, duration: .7, stagger: .1, ease: 'power3.out', overwrite: 'auto'}
+      );
+    }
+  });
+
+  /* Contact section */
+  ScrollTrigger.create({
+    trigger: '#contact',
+    start: 'top 82%',
+    onEnter: () => {
+      gsap.fromTo('#contact .rv-l',
+        {opacity: 0, x: -28},
+        {opacity: 1, x: 0, duration: .75, ease: 'power3.out', overwrite: 'auto'}
+      );
+      gsap.fromTo('#contact .rv-r',
+        {opacity: 0, x: 28},
+        {opacity: 1, x: 0, duration: .75, ease: 'power3.out', delay: .15, overwrite: 'auto'}
+      );
+    }
+  });
 });
 
 /* ─── PARALLAX ─── */
@@ -57,7 +110,7 @@ window.addEventListener('mousemove', e => {
   if (!window.matchMedia('(hover:hover)').matches) return;
   const xp = (e.clientX / innerWidth - .5) * 16;
   const yp = (e.clientY / innerHeight - .5) * 12;
-  gsap.to('.o1', {x: xp * .7,   y: yp * .5,  duration: 3,   ease: 'power2.out'});
-  gsap.to('.o2', {x: -xp * .5,  y: -yp * .4, duration: 3.5, ease: 'power2.out'});
-  gsap.to('.o3', {x: xp * .35,  y: yp * .7,  duration: 2.2, ease: 'power2.out'});
+  gsap.to('.o1', {x: xp * .7,   y: yp * .5,  duration: 3.2, ease: 'power2.out'});
+  gsap.to('.o2', {x: -xp * .5,  y: -yp * .4, duration: 3.8, ease: 'power2.out'});
+  gsap.to('.o3', {x: xp * .35,  y: yp * .7,  duration: 2.4, ease: 'power2.out'});
 }, {passive: true});
