@@ -5,6 +5,7 @@ gsap.registerPlugin(ScrollTrigger);
 window.addEventListener('load', () => {
   /* Set profile photo */
   try { document.getElementById('pimg').src = IMG_PHOTO; } catch(e) {}
+  try { const avatarImg = document.getElementById('aimg'); if (avatarImg) avatarImg.src = IMG_PHOTO; } catch(e) {}
 
   /* Orbs fade in */
   gsap.to('.orb', {opacity: 1, duration: 2.8, stagger: .45, ease: 'power2.out'});
