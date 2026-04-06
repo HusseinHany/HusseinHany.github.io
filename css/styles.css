@@ -351,7 +351,41 @@ h1.hname{
 ═══════════════════════════════════════════ */
 #about{background:var(--navy2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .about-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:5rem;align-items:start}
-.bio{font-size:1.02rem;color:var(--sub);line-height:1.9;font-weight:300;margin-bottom:2rem}
+/* standalone avatar */
+.about-avatar-wrap{
+  position:relative;
+  width:110px;height:110px;
+  margin:1rem 0 1.6rem;
+}
+.about-avatar-wrap img{
+  width:110px;height:110px;border-radius:50%;object-fit:cover;object-position:top center;
+  border:2.5px solid var(--em);
+  box-shadow:0 0 32px rgba(0,200,150,.3),0 0 0 6px rgba(0,200,150,.07);
+  display:block;
+}
+.about-avatar-ring{
+  position:absolute;inset:-6px;border-radius:50%;
+  border:1.5px solid rgba(0,200,150,.28);
+  animation:av-ring 3s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes av-ring{0%,100%{transform:scale(1);opacity:.65}50%{transform:scale(1.07);opacity:.15}}
+/* quick-info chips */
+.about-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.about-chip{
+  display:inline-flex;align-items:center;gap:.38rem;
+  padding:.32rem .85rem;
+  background:rgba(0,200,150,.05);border:1px solid rgba(0,200,150,.16);
+  border-radius:50px;font-size:.76rem;color:var(--sub);font-weight:500;
+  letter-spacing:.3px;transition:all .25s;
+}
+.about-chip:hover{background:rgba(0,200,150,.1);border-color:rgba(0,200,150,.3);color:var(--text)}
+.about-chip-em{
+  background:rgba(0,200,150,.1);border-color:rgba(0,200,150,.3);
+  color:var(--em);
+}
+.about-chip-em:hover{background:rgba(0,200,150,.18);border-color:rgba(0,200,150,.5);color:var(--em)}
+.bio{font-size:1.02rem;color:var(--sub);line-height:1.9;font-weight:300;margin-bottom:1.4rem}
 .bio strong{color:var(--text);font-weight:500}
 /* timeline */
 .tl{border-left:2px solid rgba(0,200,150,.22);padding-left:2rem;margin-bottom:2.5rem}
@@ -642,6 +676,7 @@ footer a:hover{color:var(--em3)}
   .sk-grid{grid-template-columns:repeat(auto-fill,minmax(72px,1fr))}
   .sec-h{letter-spacing:-1px}
   .photo-wrap{width:min(260px,80vw)}
+  .about-avatar-wrap,.about-avatar-wrap img{width:90px;height:90px}
   .mbox{max-height:95dvh}
 }
 
