@@ -431,9 +431,32 @@ h1.hname{
 @keyframes mq{to{transform:translateX(-50%)}}
 
 /* ═══════════════════════════════════════════
+   SKILLS (dedicated section)
+═══════════════════════════════════════════ */
+#skills{background:var(--navy)}
+.sk-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem}
+.sk-group{
+  background:linear-gradient(145deg,var(--navy3),var(--navy4));
+  border:1px solid var(--border);border-radius:var(--rL);padding:1.8rem;
+  position:relative;overflow:hidden;
+  transition:border-color .35s,box-shadow .35s;
+}
+.sk-group::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--em),var(--em3),transparent);opacity:.5;
+}
+.sk-group:hover{border-color:rgba(0,200,150,.28);box-shadow:0 12px 40px rgba(0,0,0,.4),var(--glow)}
+.sk-group-hdr{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  color:var(--em);letter-spacing:2.5px;text-transform:uppercase;
+  margin-bottom:1.2rem;display:flex;align-items:center;gap:.4rem;
+}
+.sk-group-hdr::before{content:'//';opacity:.38}
+
+/* ═══════════════════════════════════════════
    SKILL BARS
 ═══════════════════════════════════════════ */
-#sbars{background:var(--navy)}
+#skills .bars-card{margin-top:0}
 .bars-card{
   background:linear-gradient(135deg,var(--navy3),var(--navy4));
   border:1px solid var(--border);border-radius:var(--rL);padding:2.4rem 2.8rem;
@@ -649,6 +672,7 @@ footer a:hover{color:var(--em3)}
   .chip-1,.chip-2,.chip-3{display:none}
   .about-grid{grid-template-columns:1fr;gap:3rem}
   .ct-grid{grid-template-columns:1fr;gap:3rem}
+  .sk-groups{grid-template-columns:1fr}
   .nav-links{display:none}
   .hbg{display:flex}
   .sec{padding:5rem 5vw}
