@@ -1,65 +1,89 @@
 /* ─── SKILL TABS DATA ─── */
 const TABS = [
-  {s:[{n:'C++',i:'⚙️'},{n:'C#',i:'🔷'},{n:'Python',i:'🐍'},{n:'Java',i:'☕'},{n:'SQL',i:'🗄️'}]},
-  {s:[{n:'Excel',i:'📗'},{n:'Power BI',i:'📊'},{n:'Tableau',i:'📈'}]},
-  {s:[{n:'Problem Solving',i:'💡'},{n:'Data Storytelling',i:'💬'},{n:'Strategic Thinking',i:'♟️'},{n:'Data Visualization',i:'📐'},{n:'Critical Analysis',i:'🔍'},{n:'Communication',i:'📣'}]}
+  {s:[{n:'Vue.js',i:'💚'},{n:'Nuxt.js',i:'🚀'},{n:'JavaScript',i:'⚡'},{n:'HTML5',i:'🌐'},{n:'CSS3',i:'🎨'},{n:'Tailwind CSS',i:'🌊'}]},
+  {s:[{n:'Node.js',i:'🟢'},{n:'Express.js',i:'⚙️'},{n:'MongoDB',i:'🍃'},{n:'REST APIs',i:'🔌'},{n:'SQL',i:'🗄️'}]},
+  {s:[{n:'Git',i:'🔀'},{n:'GitHub',i:'🐙'},{n:'VS Code',i:'💻'},{n:'npm',i:'📦'},{n:'Postman',i:'📬'},{n:'Linux',i:'🐧'}]}
+];
+
+/* ─── SKILL GROUPS DATA (for dedicated skills section) ─── */
+const SKILL_GROUPS = [
+  {
+    title:'Frontend',icon:'🎨',
+    skills:[{n:'Vue.js',i:'💚'},{n:'Nuxt.js',i:'🚀'},{n:'JavaScript',i:'⚡'},{n:'HTML5',i:'🌐'},{n:'CSS3',i:'🎨'},{n:'Tailwind CSS',i:'🌊'},{n:'Responsive UI',i:'📱'}]
+  },
+  {
+    title:'Backend',icon:'⚙️',
+    skills:[{n:'Node.js',i:'🟢'},{n:'Express.js',i:'⚙️'},{n:'MongoDB',i:'🍃'},{n:'REST APIs',i:'🔌'},{n:'JWT Auth',i:'🔐'},{n:'SQL',i:'🗄️'}]
+  },
+  {
+    title:'Tools & More',icon:'🔧',
+    skills:[{n:'Git',i:'🔀'},{n:'GitHub',i:'🐙'},{n:'VS Code',i:'💻'},{n:'npm',i:'📦'},{n:'Postman',i:'📬'},{n:'Linux',i:'🐧'},{n:'Docker',i:'🐳'}]
+  }
 ];
 
 /* ─── SKILL BARS DATA ─── */
 const BARS = [
-  {n:'Excel',p:92,c:'#00c896'},{n:'Problem Solving',p:92,c:'#2fffc0'},
-  {n:'C++',p:90,c:'#00c896'},{n:'Power BI',p:88,c:'#f5c842'},
-  {n:'SQL',p:88,c:'#00c896'},{n:'Python',p:85,c:'#3776ab'},
-  {n:'Tableau',p:82,c:'#e97627'},{n:'C#',p:78,c:'#9b4de0'},
-  {n:'Java',p:75,c:'#f89820'}
+  {n:'HTML/CSS',p:92,c:'#e34f26'},{n:'JavaScript (ES6+)',p:90,c:'#f7df1e'},
+  {n:'Git',p:88,c:'#f05032'},{n:'Vue.js',p:85,c:'#00c896'},
+  {n:'Node.js',p:82,c:'#68a063'},{n:'Express.js',p:80,c:'#00c896'},
+  {n:'MongoDB',p:78,c:'#4db33d'},{n:'Nuxt.js',p:75,c:'#2fffc0'},
+  {n:'SQL',p:70,c:'#00618a'}
 ];
 
 /* ─── TOOLS MARQUEE DATA ─── */
-const TOOLS = ['C++','C#','Python','Java','SQL','Excel','Power BI','Tableau','Problem Solving','Data Analysis'];
+const TOOLS = ['Vue.js','Nuxt.js','Node.js','Express.js','MongoDB','JavaScript','HTML5','CSS3','Tailwind CSS','Git'];
 const TICONS = {
-  'C++':'⚙️','C#':'🔷','Python':'🐍','Java':'☕','SQL':'🗄️',
-  'Excel':'📗','Power BI':'📊','Tableau':'📈','Problem Solving':'💡','Data Analysis':'📐'
+  'Vue.js':'💚','Nuxt.js':'🚀','Node.js':'🟢','Express.js':'⚙️','MongoDB':'🍃',
+  'JavaScript':'⚡','HTML5':'🌐','CSS3':'🎨','Tailwind CSS':'🌊','Git':'🔀'
 };
 
 /* ─── PROJECTS DATA ─── */
 const PJS = [
-  {id:1,title:'Finance Flare',cat:'C++ Engineering',feat:true,
-   desc:'C++ OOP system with custom Data Structures & Algorithms for financial forecasting, integrated with Power BI & Excel.',
-   full:'Built with C++ and OOP principles, utilizing custom Data Structures and Algorithms for financial forecasting. Features real-time expense tracking, income categorization, investment portfolio analysis, and predictive financial modeling.',
-   hl:['Real-time expense tracking','Investment portfolio analysis','Predictive financial modeling','Excel & Power BI integration'],
-   imgK:'IMG_PROJ5',imgUrl:'https://github.com/user-attachments/assets/144e0cdb-fff9-4c06-aebe-652ab2470d84',
-   tech:['C++','OOP','Data Structures','Algorithms','Excel','Power BI'],
+  {id:1,title:'TaskFlow',cat:'Full-Stack',feat:true,
+   desc:'Full-stack task management app with real-time updates, JWT auth, and a drag-and-drop kanban board.',
+   full:'TaskFlow is a production-grade task management platform built with the MEVN stack. Features JWT-based authentication, real-time board updates using WebSockets, drag-and-drop task reordering, team collaboration, and a responsive Vue.js dashboard.',
+   hl:['JWT authentication & authorization','Real-time updates via WebSockets','Drag-and-drop kanban board','RESTful API with Express.js & MongoDB'],
+   imgUrl:'https://placehold.co/600x340/010810/00c896?text=TaskFlow',
+   tech:['Vue.js','Node.js','Express.js','MongoDB','WebSockets','JWT'],
    github:'https://github.com/HusseinHany',live:'https://github.com/HusseinHany'},
-  {id:2,title:'Bank Management System',cat:'C++ Engineering',feat:false,
-   desc:'Secure C++ backend with authentication and transactional logic ensuring full data integrity.',
-   full:'Features Secure Authentication and robust Transactional Logic powered by a C++ backend, ensuring data integrity and system reliability. Implements OOP design patterns and efficient data structures.',
-   hl:['Secure authentication','Transaction processing','Loan management','Financial reporting'],
-   imgK:'IMG_PROJ4',imgUrl:'https://github.com/user-attachments/assets/dfb4035c-1d28-426b-88da-84a7c4601194',
-   tech:['C++','OOP','Data Structures','Algorithms'],
+  {id:2,title:'ShopNest',cat:'Full-Stack',feat:true,
+   desc:'E-commerce platform with SSR via Nuxt.js, product catalog, cart management, and Stripe payments.',
+   full:'ShopNest is a modern e-commerce solution built with Nuxt.js for SSR/SEO, Express.js backend, and MongoDB for flexible product data. Includes full shopping cart, order management, admin dashboard, and Stripe payment integration.',
+   hl:['Server-side rendering with Nuxt.js','Stripe payment gateway integration','Admin product management panel','Order tracking & email notifications'],
+   imgUrl:'https://placehold.co/600x340/02111c/2fffc0?text=ShopNest',
+   tech:['Nuxt.js','Node.js','Express.js','MongoDB','Stripe'],
    github:'https://github.com/HusseinHany',live:'https://github.com/HusseinHany'},
-  {id:3,title:'Sales Performance Analytics',cat:'Data Analytics',feat:true,
-   desc:'Predictive analytics and regional trend forecasting delivering actionable KPI dashboards.',
-   full:'Incorporates Predictive Analytics and Regional Trend Forecasting to deliver actionable data storytelling. Built using Power BI for dynamic visualizations, Excel for data preprocessing, and SQL for database management.',
-   hl:['Real-time KPI monitoring','Regional comparison','Customer segmentation','Drill-down capabilities'],
-   imgK:'IMG_PROJ3',imgUrl:'https://github.com/user-attachments/assets/153093c3-9bbb-4e57-8617-e0a6508121bf',
-   tech:['Power BI','SQL','Excel','Data Analysis'],
-   github:'https://github.com/HusseinHany/Sales',live:'https://github.com/HusseinHany/Sales'},
-  {id:4,title:'Candy Line Sales Overview',cat:'Data Analytics',feat:false,
-   desc:'Geographical sales mapping with predictive analytics and automated KPI tracking.',
-   full:'Incorporates Predictive Analytics and Regional Trend Forecasting. Developed using Power BI for advanced visualizations, SQL for data extraction, and Excel for statistical analysis.',
-   hl:['Profit margin analysis','Geographical mapping','Seasonal trend forecasting','Automated KPI tracking'],
-   imgK:'IMG_PROJ1',imgUrl:'https://github.com/user-attachments/assets/adb7374c-3604-4440-86e0-e6fd68b80ea4',
-   tech:['Power BI','SQL','Excel','Statistical Analysis'],
-   github:'https://github.com/HusseinHany/Sales',live:'https://github.com/HusseinHany/Sales'},
-  {id:5,title:'InsightFlow Dashboard',cat:'Data Analytics',feat:false,
-   desc:'Smart sales & profit dashboard with predictive modeling, city-level breakdowns, and interactive charts.',
-   full:'Smart sales and profit dashboard with predictive analytics and regional trend forecasting. Built with Power BI for interactive dashboards and advanced Excel data modeling.',
-   hl:['Predictive analytics','City-level breakdown','Automated reporting','Top employee tracking'],
-   imgK:'IMG_PROJ2',tech:['Power BI','Excel','Data Visualization','Predictive Analytics'],
-   github:'https://github.com/HusseinHany/Sales',live:'https://github.com/HusseinHany/Sales'}
+  {id:3,title:'DevConnect',cat:'Full-Stack',feat:false,
+   desc:'Developer Q&A forum with voting, markdown rendering, tags, and a gamified reputation system.',
+   full:'DevConnect is a Stack Overflow-inspired Q&A platform for developers. Built with Vue.js + Node.js + MongoDB. Supports markdown-rendered answers, upvote/downvote logic, tag-based search, reputation points, and detailed user profiles.',
+   hl:['Markdown rendering for code answers','Tag-based search & filtering','Reputation & badge system','User profile with contribution history'],
+   imgUrl:'https://placehold.co/600x340/061522/f5c842?text=DevConnect',
+   tech:['Vue.js','Node.js','MongoDB','Markdown','REST API'],
+   github:'https://github.com/HusseinHany',live:'https://github.com/HusseinHany'},
+  {id:4,title:'WeatherLens',cat:'Frontend',feat:false,
+   desc:'Interactive weather dashboard with 7-day forecasts, animated charts, and geolocation support.',
+   full:'WeatherLens is a sleek weather dashboard built with Vue.js. Integrates OpenWeatherMap API for real-time weather data, 7-day forecasts, and hourly breakdowns. Features Chart.js-powered animated graphs, geolocation support, and saved locations.',
+   hl:['Real-time weather from OpenWeatherMap API','Interactive Chart.js temperature/humidity graphs','Geolocation & saved cities','Dark/light mode with smooth transitions'],
+   imgUrl:'https://placehold.co/600x340/010810/3b82f6?text=WeatherLens',
+   tech:['Vue.js','Chart.js','OpenWeather API','Tailwind CSS'],
+   github:'https://github.com/HusseinHany',live:'https://github.com/HusseinHany'},
+  {id:5,title:'NoteVault',cat:'Full-Stack',feat:false,
+   desc:'Markdown note-taking app with folders, full-text search, live preview, and real-time cloud sync.',
+   full:'NoteVault is a developer-focused note-taking app. Write notes in Markdown with live preview, organize with nested folders and tags, and sync instantly across devices via a Node.js + MongoDB backend. Includes full-text search, export to PDF, and public sharing.',
+   hl:['Live Markdown preview editor','Nested folder & tag organization','Full-text search across all notes','One-click public sharing via URL'],
+   imgUrl:'https://placehold.co/600x340/0a1e30/00c896?text=NoteVault',
+   tech:['Vue.js','Node.js','MongoDB','Markdown','REST API'],
+   github:'https://github.com/HusseinHany',live:'https://github.com/HusseinHany'},
+  {id:6,title:'PortfolioCMS',cat:'Full-Stack',feat:false,
+   desc:'Self-hosted headless CMS for developers to manage portfolio content without touching code.',
+   full:'PortfolioCMS is a headless content management system designed for developer portfolios. Built with the MEVN stack, it provides a clean admin interface to manage projects, skills, and blog posts. Content is served via a REST API to any static frontend.',
+   hl:['Headless REST API for any frontend','Rich text editor with media uploads','Role-based access control (RBAC)','One-command Docker deployment'],
+   imgUrl:'https://placehold.co/600x340/02111c/00c896?text=PortfolioCMS',
+   tech:['Vue.js','Node.js','Express.js','MongoDB','Docker','REST API'],
+   github:'https://github.com/HusseinHany',live:'https://github.com/HusseinHany'}
 ];
 
 /* ─── ATTACH PROJECT IMAGES ─── */
 PJS.forEach(p => {
-  p.img = p.imgUrl || (typeof window !== 'undefined' && window[p.imgK]) || '';
+  p.img = p.imgUrl || '';
 });

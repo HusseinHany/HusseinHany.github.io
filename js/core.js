@@ -32,10 +32,10 @@ window.addEventListener('load', () => {
 
   /* Typewriter */
   const msgs = [
-    'Turning raw data into strategic insights',
-    'Building robust C++ systems that scale',
-    'From data\'s maze to clarity\'s blaze',
-    'Bridging engineering & analytics'
+    'Building full-stack apps that actually ship',
+    'MEVN stack — from API to UI',
+    'Vue.js on the front, Node.js in the back',
+    'Clean code. Fast products. Real results.'
   ];
   let mi = 0, ci = 0, del = false;
   const typed = document.getElementById('typed');
@@ -78,15 +78,19 @@ window.addEventListener('load', () => {
     }
   });
 
-  /* Skills bars section */
+  /* Skills section */
   ScrollTrigger.create({
-    trigger: '#sbars',
+    trigger: '#skills',
     start: 'top 82%',
     once: true,
     onEnter: () => {
-      gsap.fromTo('#sbars .bars-card',
+      gsap.fromTo('#skills .sk-group',
+        {opacity: 0, y: 28},
+        {opacity: 1, y: 0, duration: .6, stagger: .12, ease: 'power3.out'}
+      );
+      gsap.fromTo('#skills .bars-card',
         {opacity: 0, y: 32},
-        {opacity: 1, y: 0, duration: .7, ease: 'power3.out'}
+        {opacity: 1, y: 0, duration: .7, delay: .4, ease: 'power3.out'}
       );
     }
   });
