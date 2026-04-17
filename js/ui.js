@@ -128,6 +128,21 @@ function renderSkillTab() {
 }
 renderSkillTab();
 
+/* ─── SKILL GROUPS (dedicated skills section) ─── */
+function renderSkillGroups() {
+  const container = document.getElementById('sk-groups-wrap');
+  if (!container) return;
+  container.innerHTML = SKILL_GROUPS.map(g => `
+    <div class="sk-group">
+      <div class="sk-group-hdr">${g.title}</div>
+      <div class="sk-grid">${g.skills.map(s =>
+        `<div class="sk-chip"><span class="sk-icon" aria-hidden="true">${s.i}</span><span>${s.n}</span></div>`
+      ).join('')}</div>
+    </div>`
+  ).join('');
+}
+renderSkillGroups();
+
 /* ─── MARQUEE ─── */
 (function initMarquee() {
   const mqEl = document.getElementById('mq-t');
