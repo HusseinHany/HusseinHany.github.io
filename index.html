@@ -4,25 +4,25 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <style>html{scroll-padding-top:72px}</style>
-<meta name="description" content="Hussein Darwish - Data Analyst & C++ Developer. Turning raw data into strategic insights. Expert in Power BI, Tableau, SQL, and C++ engineering."/>
-<meta name="keywords" content="Hussein Darwish, Data Analyst, C++ Developer, Power BI, Tableau, SQL, Excel, Data Visualization, Cairo Egypt"/>
-<meta name="author" content="Hussein Darwish"/>
+<meta name="description" content="Hussein Hany - Full-Stack Web Developer. Building modern, scalable web applications with the MEVN stack. Vue.js, Nuxt.js, Node.js, MongoDB."/>
+<meta name="keywords" content="Hussein Hany, Full-Stack Developer, MEVN Stack, Vue.js, Nuxt.js, Node.js, MongoDB, Web Developer, Cairo Egypt"/>
+<meta name="author" content="Hussein Hany"/>
 <meta name="robots" content="index, follow"/>
 <meta name="theme-color" content="#00c896"/>
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://husseinHany.github.io/"/>
-<meta property="og:title" content="Hussein Darwish | Data Analyst & Developer"/>
-<meta property="og:description" content="Turning raw data into strategic insights. Data Analyst & C++ Developer based in Cairo, Egypt."/>
+<meta property="og:title" content="Hussein Hany | Full-Stack Web Developer"/>
+<meta property="og:description" content="Building modern, scalable web applications with the MEVN stack. Vue.js, Node.js, MongoDB — from idea to production."/>
 <meta property="og:image" content="https://husseinHany.github.io/og-image.jpg"/>
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Hussein Darwish | Data Analyst & Developer"/>
-<meta name="twitter:description" content="Turning raw data into strategic insights. Data Analyst & C++ Developer based in Cairo, Egypt."/>
+<meta name="twitter:title" content="Hussein Hany | Full-Stack Web Developer"/>
+<meta name="twitter:description" content="Building modern, scalable web applications with the MEVN stack. Vue.js, Node.js, MongoDB — from idea to production."/>
 
-<title>Hussein Darwish | Data Analyst & Developer</title>
+<title>Hussein Hany | Full-Stack Web Developer</title>
 <link rel="canonical" href="https://husseinHany.github.io/"/>
 
 <!-- Fonts -->
@@ -42,10 +42,10 @@
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Hussein Darwish",
+  "name": "Hussein Hany",
   "url": "https://husseinHany.github.io/",
-  "jobTitle": "Data Analyst & C++ Developer",
-  "description": "Computer Science student and Data Analyst specializing in Power BI, Tableau, SQL, and C++ engineering.",
+  "jobTitle": "Full-Stack Web Developer",
+  "description": "Computer Science student and Full-Stack Web Developer specializing in the MEVN stack — Vue.js, Nuxt.js, Node.js, Express.js, and MongoDB.",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Cairo",
@@ -56,7 +56,7 @@
     "https://github.com/HusseinHany",
     "https://www.linkedin.com/in/husseindarwesh"
   ],
-  "knowsAbout": ["Data Analysis","C++","Power BI","Tableau","SQL","Excel","Python","Data Visualization"]
+  "knowsAbout": ["Vue.js","Nuxt.js","Node.js","Express.js","MongoDB","JavaScript","HTML5","CSS3","Tailwind CSS","REST APIs","Git"]
 }
 </script>
 </head>
@@ -68,10 +68,11 @@
 
 <!-- ══ NAV ══ -->
 <nav id="nav" aria-label="Main navigation">
-  <a class="logo" href="#hero" onclick="goTo('hero');return false" aria-label="Hussein Darwish - Home">HD</a>
+  <a class="logo" href="#hero" onclick="goTo('hero');return false" aria-label="Hussein Hany - Home">HH</a>
   <div class="nav-links" role="list">
     <a href="#hero" onclick="goTo('hero');return false" role="listitem">Home</a>
     <a href="#about" onclick="goTo('about');return false" role="listitem">About</a>
+    <a href="#skills" onclick="goTo('skills');return false" role="listitem">Skills</a>
     <a href="#projects" onclick="goTo('projects');return false" role="listitem">Projects</a>
     <a href="#contact" onclick="goTo('contact');return false" role="listitem">Contact</a>
     <a href="#contact" class="nav-hire" onclick="goTo('contact');return false" role="listitem">Hire Me</a>
@@ -88,6 +89,7 @@
 <nav class="mob-menu" id="mob-menu" aria-label="Mobile navigation" aria-hidden="true">
   <a href="#hero" onclick="goTo('hero');closeMenu();return false">Home</a>
   <a href="#about" onclick="goTo('about');closeMenu();return false">About</a>
+  <a href="#skills" onclick="goTo('skills');closeMenu();return false">Skills</a>
   <a href="#projects" onclick="goTo('projects');closeMenu();return false">Projects</a>
   <a href="#contact" onclick="goTo('contact');closeMenu();return false">Contact</a>
   <a href="#contact" onclick="goTo('contact');closeMenu();return false" style="color:var(--em)">Hire Me ↗</a>
@@ -107,32 +109,32 @@
     </div>
     <h1 class="hname" id="hname">
       <span class="hname-l1">Hussein</span>
-      <span class="hname-l2">Darwish</span>
+      <span class="hname-l2">Hany</span>
     </h1>
-    <div class="hrole" id="hrole" aria-label="Role: Data Analyst and Developer">
-      <span class="rbr" aria-hidden="true">[</span>Data Analyst &amp; Developer<span class="rbr" aria-hidden="true">]</span>
+    <div class="hrole" id="hrole" aria-label="Role: Full-Stack Web Developer">
+      <span class="rbr" aria-hidden="true">[</span>Full-Stack Web Developer<span class="rbr" aria-hidden="true">]</span>
     </div>
     <div class="htype" id="htype" aria-live="polite" aria-label="Dynamic tagline">
       <span id="typed"></span><span class="tcur" aria-hidden="true"></span>
     </div>
     <div class="hero-ctas" id="hctas">
-      <button class="btn-p" onclick="goTo('contact')"><span>✉ Hire Me</span></button>
-      <a href="#projects" class="btn-o" onclick="goTo('projects');return false">→ See My Work</a>
+      <button class="btn-p" onclick="goTo('projects')"><span>→ View Projects</span></button>
+      <a href="#contact" class="btn-o" onclick="goTo('contact');return false">✉ Contact Me</a>
     </div>
     <div class="stats-row" id="hstats" aria-label="Key statistics">
       <div class="stat-item">
-        <span class="stat-n" data-t="5">0+</span>
+        <span class="stat-n" data-t="6">0+</span>
         <span class="stat-l">Projects</span>
       </div>
       <div class="stat-div" aria-hidden="true"></div>
       <div class="stat-item">
         <span class="stat-n" data-t="10">0+</span>
-        <span class="stat-l">Tools Mastered</span>
+        <span class="stat-l">Technologies</span>
       </div>
       <div class="stat-div" aria-hidden="true"></div>
       <div class="stat-item">
-        <span class="stat-n" data-t="5">0+</span>
-        <span class="stat-l">Languages</span>
+        <span class="stat-n" data-t="2">0+</span>
+        <span class="stat-l">Years Coding</span>
       </div>
     </div>
   </div>
@@ -142,11 +144,11 @@
     <div class="photo-wrap">
       <div class="photo-glow" aria-hidden="true"></div>
       <div class="photo-inner">
-        <img id="pimg" src="" alt="Hussein Darwish - Data Analyst and Developer"/>
+        <img id="pimg" src="" alt="Hussein Hany - Full-Stack Web Developer"/>
         <div class="photo-fade" aria-hidden="true"></div>
       </div>
-      <div class="chip c-em chip-1" aria-hidden="true"><span class="cdot"></span>C++ Expert</div>
-      <div class="chip c-gd chip-2" aria-hidden="true"><span class="cdot"></span>Power BI</div>
+      <div class="chip c-em chip-1" aria-hidden="true"><span class="cdot"></span>MEVN Stack</div>
+      <div class="chip c-gd chip-2" aria-hidden="true"><span class="cdot"></span>Vue.js</div>
       <div class="chip c-gr chip-3" aria-hidden="true"><span class="cdot"></span>Open to Work</div>
     </div>
   </div>
@@ -163,32 +165,33 @@
     <div class="rv-l">
       <div class="eyebrow" aria-hidden="true">About Me</div>
       <div class="about-avatar-wrap">
-        <img id="aimg" src="" alt="Hussein Darwish - Data Analyst and Developer"/>
+        <img id="aimg" src="" alt="Hussein Hany - Full-Stack Web Developer"/>
         <div class="about-avatar-ring" aria-hidden="true"></div>
       </div>
-      <h2 class="sec-h" id="about-heading">Data Analyst with a <span class="em-txt">Software</span> Heart</h2>
+      <h2 class="sec-h" id="about-heading">Full-Stack Developer with a <span class="em-txt">Product</span> Mindset</h2>
       <div class="divider" aria-hidden="true"></div>
       <p class="bio">
-        I'm a <strong>Computer Science student at Ahram Canadian University</strong>, passionate about transforming complex data into clear, strategic insights. I blend the precision of <strong>C++ engineering</strong> with modern BI tools like <strong>Power BI</strong> and <strong>Tableau</strong> — building solutions that are technically robust and visually compelling.<br><br>
-        My approach: understand the problem deeply, engineer it precisely, and communicate results with clarity and impact.
+        I'm a <strong>Computer Science student at Ahram Canadian University</strong> who builds things end-to-end. I work in the <strong>MEVN stack</strong> — MongoDB, Express, Vue.js, Node.js — which means I own the full lifecycle of a feature, from database schema to polished UI.<br><br>
+        Right now I'm deepening my expertise in <strong>Vue.js and Nuxt.js</strong>, learning server-side rendering and static site generation. My goal: ship products that are fast, maintainable, and genuinely useful.
       </p>
       <div class="about-chips" aria-label="Key attributes">
         <span class="about-chip"><span aria-hidden="true">📍</span>Cairo, Egypt</span>
         <span class="about-chip"><span aria-hidden="true">🎓</span>CS Student</span>
+        <span class="about-chip"><span aria-hidden="true">📚</span>Learning Nuxt.js</span>
         <span class="about-chip about-chip-em"><span aria-hidden="true">✅</span>Open to Work</span>
       </div>
       <div class="tl" aria-label="Career timeline">
         <div class="tl-i"><p><strong>🎓 Ahram Canadian University</strong> — Computer Science</p></div>
-        <div class="tl-i"><p><strong>⚙️ Finance Flare</strong> — C++ financial system with Power BI integration</p></div>
-        <div class="tl-i"><p><strong>📊 BI Mastery</strong> — Power BI, Tableau &amp; advanced Excel analytics</p></div>
-        <div class="tl-i"><p><strong>🚀 Seeking</strong> — Full-time Data Analyst / Developer roles</p></div>
+        <div class="tl-i"><p><strong>💚 MEVN Stack</strong> — Full-stack apps with Vue.js, Node.js &amp; MongoDB</p></div>
+        <div class="tl-i"><p><strong>🚀 Nuxt.js &amp; SSR</strong> — Diving deep into server-side rendering &amp; Nuxt ecosystem</p></div>
+        <div class="tl-i"><p><strong>🎯 Seeking</strong> — Full-stack or frontend developer role (Vue / Node focus)</p></div>
       </div>
     </div>
     <div class="rv-r">
       <div class="tab-row" role="tablist" aria-label="Skills categories">
-        <button class="tbtn on" onclick="switchTab(0,this)" role="tab" aria-selected="true" aria-controls="tab-c">Languages</button>
-        <button class="tbtn" onclick="switchTab(1,this)" role="tab" aria-selected="false" aria-controls="tab-c">BI &amp; Data</button>
-        <button class="tbtn" onclick="switchTab(2,this)" role="tab" aria-selected="false" aria-controls="tab-c">Core Skills</button>
+        <button class="tbtn on" onclick="switchTab(0,this)" role="tab" aria-selected="true" aria-controls="tab-c">Frontend</button>
+        <button class="tbtn" onclick="switchTab(1,this)" role="tab" aria-selected="false" aria-controls="tab-c">Backend</button>
+        <button class="tbtn" onclick="switchTab(2,this)" role="tab" aria-selected="false" aria-controls="tab-c">Tools</button>
       </div>
       <div id="tab-c" role="tabpanel"></div>
       <div class="mq-band" aria-hidden="true"><div class="mq-t" id="mq-t"></div></div>
@@ -196,11 +199,17 @@
   </div>
 </section>
 
-<!-- ══ SKILL BARS ══ -->
-<section id="sbars" class="sec" style="padding-top:1.5rem;padding-bottom:5rem" aria-labelledby="skills-heading">
+<!-- ══ SKILLS ══ -->
+<section id="skills" class="sec" aria-labelledby="skills-heading">
   <div class="sec-in">
-    <div class="bars-card rv">
-      <div class="bars-h" id="skills-heading">// Proficiency Overview</div>
+    <div class="rv">
+      <div class="eyebrow" aria-hidden="true">What I Work With</div>
+      <h2 class="sec-h" id="skills-heading">My <span class="em-txt">Tech Stack</span></h2>
+      <div class="divider" aria-hidden="true"></div>
+    </div>
+    <div class="sk-groups rv d1" id="sk-groups-wrap" role="list" aria-label="Skills grouped by category"></div>
+    <div class="bars-card rv d2">
+      <div class="bars-h">// Proficiency Overview</div>
       <div id="bars-w"></div>
     </div>
   </div>
@@ -216,8 +225,8 @@
     </div>
     <div class="fp-row rv d1" id="fp-row" role="group" aria-label="Filter projects by category">
       <button class="fp on" data-c="All" aria-pressed="true">All</button>
-      <button class="fp" data-c="Data Analytics" aria-pressed="false">Data Analytics</button>
-      <button class="fp" data-c="C++ Engineering" aria-pressed="false">C++ Engineering</button>
+      <button class="fp" data-c="Full-Stack" aria-pressed="false">Full-Stack</button>
+      <button class="fp" data-c="Frontend" aria-pressed="false">Frontend</button>
     </div>
     <div class="pj-grid" id="pj-g" role="list" aria-label="Projects"></div>
   </div>
@@ -264,9 +273,9 @@
 </section>
 
 <footer role="contentinfo">
-  <div class="f-logo" aria-hidden="true">HD</div>
-  <p>Hussein Darwish · Data Analyst &amp; Developer · Cairo, Egypt</p>
-  <p style="margin-top:.4rem;opacity:.4;font-size:.72rem">© 2025 · Built with passion</p>
+  <div class="f-logo" aria-hidden="true">HH</div>
+  <p>Hussein Hany · Full-Stack Web Developer · Cairo, Egypt</p>
+  <p style="margin-top:.4rem;opacity:.4;font-size:.72rem">© 2025 · Built with the MEVN stack &amp; passion</p>
 </footer>
 
 <!-- ══ MODAL ══ -->
