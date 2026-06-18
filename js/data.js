@@ -37,6 +37,9 @@ const TICONS = {
   'JavaScript':'⚡','HTML5':'🌐','CSS3':'🎨','Tailwind CSS':'🌊','Git':'🔀'
 };
 
+/* ─── CONTACT DATA ─── */
+const CONTACT_EMAIL = 'hussein27007@gmail.com';
+
 /* ─── PROJECTS DATA ─── */
 const PJS = [
   {id:1,title:'Finance Flare',cat:'C++ Engineering',feat:true,
