@@ -2,7 +2,8 @@
 function goTo(id) {
   const el = document.getElementById(id);
   if (!el) return;
-  const navH = document.getElementById('nav')?.offsetHeight || 72;
+  const nav = document.getElementById('nav');
+  const navH = nav && Number.isFinite(nav.offsetHeight) ? nav.offsetHeight : 72;
   const top = el.getBoundingClientRect().top + window.scrollY - (id === 'hero' ? 0 : navH);
   window.scrollTo({top: Math.max(0, top), behavior: 'smooth'});
 }
@@ -15,6 +16,7 @@ function scrollToTop() {
 /* ─── TOAST NOTIFICATION ─── */
 function showToast(msg, err = false) {
   const t = document.getElementById('toast');
+  if (!t) return;
   t.textContent = msg;
   t.className = 'toast' + (err ? ' err' : '');
   t.classList.add('show');
