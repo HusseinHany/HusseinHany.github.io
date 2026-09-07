@@ -121,7 +121,7 @@ function switchTab(i, btn) {
   btn.setAttribute('aria-selected', 'true');
   renderSkillTab();
   const chips = document.querySelectorAll('.sk-chip');
-  if (chips.length) {
+  if (chips.length && hasGsap) {
     gsap.fromTo('.sk-chip',
       {opacity: 0, scale: .82, y: 12},
       {opacity: 1, scale: 1, y: 0, duration: .35, stagger: .045, ease: 'back.out(2)'}
@@ -271,7 +271,7 @@ function renderProjects() {
     });
   }
   initProjectImages(g);
-  gsap.fromTo('.pj-card', {opacity: 0, y: 28}, {opacity: 1, y: 0, duration: .5, stagger: .09, ease: 'power2.out'});
+  if (hasGsap) gsap.fromTo('.pj-card', {opacity: 0, y: 28}, {opacity: 1, y: 0, duration: .5, stagger: .09, ease: 'power2.out'});
 }
 renderProjects();
 
@@ -281,7 +281,11 @@ document.querySelectorAll('.fp').forEach(p => {
     this.classList.add('on');
     this.setAttribute('aria-pressed', 'true');
     activeCat = this.dataset.c;
-    gsap.to('.pj-card', {opacity: 0, y: 16, scale: .97, duration: .2, stagger: .04, onComplete: renderProjects});
+    if (hasGsap) {
+      gsap.to('.pj-card', {opacity: 0, y: 16, scale: .97, duration: .2, stagger: .04, onComplete: renderProjects});
+    } else {
+      renderProjects();
+    }
   });
 });
 
@@ -367,7 +371,7 @@ function getContactEmail() {
 
 function clearConfetti() {
   confettiParticles.forEach(p => {
-    if (window.gsap) gsap.killTweensOf(p);
+    if (hasGsap) gsap.killTweensOf(p);
     p.remove();
   });
   confettiParticles = [];
@@ -407,17 +411,24 @@ async function submitForm(e) {
         p.style.cssText = `position:fixed;width:7px;height:7px;border-radius:50%;left:${45 + Math.random() * 10}%;bottom:25%;background:hsl(${Math.random() * 60 + 150},80%,55%);pointer-events:none;z-index:900;`;
         document.body.appendChild(p);
         confettiParticles.push(p);
-        gsap.to(p, {
-          y: -(180 + Math.random() * 200),
-          x: (Math.random() - .5) * 200,
-          opacity: 0,
-          duration: 1.2 + Math.random() * .8,
-          ease: 'power2.out',
-          onComplete: () => {
+        if (hasGsap) {
+          gsap.to(p, {
+            y: -(180 + Math.random() * 200),
+            x: (Math.random() - .5) * 200,
+            opacity: 0,
+            duration: 1.2 + Math.random() * .8,
+            ease: 'power2.out',
+            onComplete: () => {
+              p.remove();
+              confettiParticles = confettiParticles.filter(item => item !== p);
+            }
+          });
+        } else {
+          setTimeout(() => {
             p.remove();
             confettiParticles = confettiParticles.filter(item => item !== p);
-          }
-        });
+          }, 1200);
+        }
       }
     } else {
       clearConfetti();
