@@ -1,3 +1,7 @@
+/* ─── GSAP AVAILABILITY (guards against a blocked/failed CDN load) ─── */
+const hasGsap = typeof gsap !== 'undefined';
+const hasScrollTrigger = hasGsap && typeof ScrollTrigger !== 'undefined';
+
 /* ─── SMOOTH SCROLL TO SECTION (accounts for fixed nav height) ─── */
 function goTo(id) {
   const el = document.getElementById(id);

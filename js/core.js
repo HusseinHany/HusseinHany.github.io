@@ -1,5 +1,7 @@
 /* ─── GSAP SETUP ─── */
-gsap.registerPlugin(ScrollTrigger);
+/* hasGsap/hasScrollTrigger (from utils.js) guard against a blocked/failed CDN
+   load, so hero content isn't left permanently invisible. */
+if (hasScrollTrigger) gsap.registerPlugin(ScrollTrigger);
 
 /* ─── HERO ENTRANCE ─── */
 window.addEventListener('load', () => {
@@ -7,6 +9,11 @@ window.addEventListener('load', () => {
   try { document.getElementById('pimg').src = IMG_PHOTO; } catch(e) {}
   try { document.getElementById('aimg').src = IMG_PHOTO; } catch(e) {}
 
+  if (!hasGsap) {
+    document.querySelectorAll('.orb,#hbadge,#hname,#hrole,#htype,#hctas,#hstats,#hphoto')
+      .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+    document.querySelectorAll('.stat-n').forEach(el => { el.textContent = (+el.dataset.t) + '+'; });
+  } else {
   /* Orbs fade in */
   gsap.to('.orb', {opacity: 1, duration: 2.8, stagger: .45, ease: 'power2.out'});
 
@@ -29,6 +36,7 @@ window.addEventListener('load', () => {
       onUpdate: function() { el.textContent = Math.round(this.targets()[0].v) + '+'; }
     });
   });
+  }
 
   /* Typewriter */
   const msgs = [
@@ -51,6 +59,8 @@ window.addEventListener('load', () => {
     setTimeout(type, del ? 36 : 65);
   }
   setTimeout(type, 2100);
+
+  if (!hasScrollTrigger) return;
 
   /* ─── SCROLLTRIGGER SECTION ANIMATIONS ─── */
   /* About section */
@@ -128,7 +138,7 @@ window.addEventListener('load', () => {
 
 /* ─── PARALLAX ─── */
 window.addEventListener('mousemove', e => {
-  if (!window.matchMedia('(hover:hover)').matches) return;
+  if (!hasGsap || !window.matchMedia('(hover:hover)').matches) return;
   const xp = (e.clientX / innerWidth - .5) * 16;
   const yp = (e.clientY / innerHeight - .5) * 12;
   gsap.to('.o1', {x: xp * .7,   y: yp * .5,  duration: 3.2, ease: 'power2.out'});
