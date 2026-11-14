@@ -3,12 +3,17 @@
   const prog = document.getElementById('prog');
   const nav = document.getElementById('nav');
   const backTop = document.getElementById('back-top');
-  window.addEventListener('scroll', () => {
+  let ticking = false;
+  const update = () => {
+    ticking = false;
     const scrolled = window.scrollY;
-    const total = document.body.scrollHeight - window.innerHeight;
-    if (prog) prog.style.width = (scrolled / total * 100) + '%';
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    if (prog) prog.style.transform = `scaleX(${total > 0 ? Math.min(1, scrolled / total) : 0})`;
     if (nav) nav.classList.toggle('scrolled', scrolled > 60);
     if (backTop) backTop.classList.toggle('show', scrolled > 500);
+  };
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
   }, {passive: true});
 })();
 
@@ -36,10 +41,10 @@ function toggleMenu() {
   document.body.style.overflow = nextOpen ? 'hidden' : '';
   if (nextOpen) {
     mm.querySelectorAll('a').forEach((a, i) => {
-      a.style.transitionDelay = (i * .08 + .15) + 's';
+      a.style.transitionDelay = (i * .035 + .05) + 's';
     });
     /* Focus first menu link for keyboard accessibility */
-    setTimeout(() => mm.querySelector('a')?.focus(), 480);
+    setTimeout(() => mm.querySelector('a')?.focus(), 300);
   }
 }
 
@@ -97,7 +102,7 @@ function switchTab(i, btn) {
   if (chips.length && hasGsap) {
     gsap.fromTo('.sk-chip',
       {opacity: 0, scale: .82, y: 12},
-      {opacity: 1, scale: 1, y: 0, duration: .35, stagger: .045, ease: 'back.out(2)'}
+      {opacity: 1, scale: 1, y: 0, duration: .25, stagger: .025, ease: 'power2.out'}
     );
   }
 }
@@ -245,7 +250,7 @@ function renderProjects() {
     });
   }
   initProjectImages(g);
-  if (hasGsap) gsap.fromTo('.pj-card', {opacity: 0, y: 28}, {opacity: 1, y: 0, duration: .5, stagger: .09, ease: 'power2.out'});
+  if (hasGsap) gsap.fromTo('.pj-card', {opacity: 0, y: 28}, {opacity: 1, y: 0, duration: .3, stagger: .04, ease: 'power2.out'});
 }
 renderProjects();
 
@@ -256,7 +261,7 @@ document.querySelectorAll('.fp').forEach(p => {
     this.setAttribute('aria-pressed', 'true');
     activeCat = this.dataset.c;
     if (hasGsap) {
-      gsap.to('.pj-card', {opacity: 0, y: 16, scale: .97, duration: .2, stagger: .04, onComplete: renderProjects});
+      gsap.to('.pj-card', {opacity: 0, duration: .1, onComplete: renderProjects});
     } else {
       renderProjects();
     }

@@ -48,7 +48,7 @@
    RESET
 ═══════════════════════════════════════════ */
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:hidden}
+html{overflow-x:hidden}
 body{
   font-family:'Inter',sans-serif;background:var(--navy);
   color:var(--text);overflow-x:hidden;
@@ -75,7 +75,7 @@ button,a{cursor:pointer;text-decoration:none;color:inherit;border:none;backgroun
 /* ═══════════════════════════════════════════
    PROGRESS BAR
 ═══════════════════════════════════════════ */
-#prog{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--em),var(--em3),var(--gold));z-index:1000;pointer-events:none;transition:width .1s linear;box-shadow:0 0 8px rgba(0,200,150,.5)}
+#prog{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--em),var(--em3),var(--gold));z-index:1000;pointer-events:none;box-shadow:0 0 8px rgba(0,200,150,.5)}
 
 /* ═══════════════════════════════════════════
    NAV
@@ -142,7 +142,7 @@ button,a{cursor:pointer;text-decoration:none;color:inherit;border:none;backgroun
   position:fixed;inset:0;z-index:199;
   background:rgba(1,8,16,.97);backdrop-filter:blur(36px);-webkit-backdrop-filter:blur(36px);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.8rem;
-  transform:translateX(100%);transition:transform .48s cubic-bezier(.77,0,.175,1);
+  transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
 }
 .mob-menu.open{transform:none}
 .mob-menu a{
@@ -631,9 +631,9 @@ footer a:hover{color:var(--em3)}
 /* ═══════════════════════════════════════════
    REVEAL UTILITIES
 ═══════════════════════════════════════════ */
-.rv{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
-.rv-l{opacity:0;transform:translateX(-32px);transition:opacity .8s ease,transform .8s ease}
-.rv-r{opacity:0;transform:translateX(32px);transition:opacity .8s ease,transform .8s ease}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .5s ease,transform .5s ease}
+.rv-l{opacity:0;transform:translateX(-32px);transition:opacity .5s ease,transform .5s ease}
+.rv-r{opacity:0;transform:translateX(32px);transition:opacity .5s ease,transform .5s ease}
 .rv.in,.rv-l.in,.rv-r.in{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 
@@ -722,3 +722,21 @@ footer a:hover{color:var(--em3)}
   }
   html{scroll-behavior:auto}
 }
+
+/* ═══════════════════════════════════════════
+   RENDERING COST
+   Full-screen blurs and paint-only animations made clicks and scrolling
+   lag, most of all in Safari. Backgrounds here are already near-opaque,
+   so dropping the blur behind them changes very little visually.
+═══════════════════════════════════════════ */
+.orb{filter:none}
+.hero-bg-grid{animation:none;opacity:.85}
+#nav{transition:padding var(--transition),background var(--transition),border-color var(--transition),box-shadow var(--transition)}
+#nav.scrolled,.mob-menu,.mbg,.toast,#back-top{backdrop-filter:none;-webkit-backdrop-filter:none}
+:root:not([data-theme="light"]) #nav.scrolled{background:rgba(1,8,16,.97)}
+.mbg{transition:opacity .18s}
+.hname-l2,.em-txt{animation:none}
+.bar-f::after{animation:none;display:none}
+button,a,.fp,.tbtn,.pj-card{touch-action:manipulation}
+.mbox{transition:transform .22s cubic-bezier(.22,1,.36,1)}
+.mob-menu a{transition:color .2s,opacity .25s,transform .25s}
