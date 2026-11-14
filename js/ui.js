@@ -1,30 +1,3 @@
-/* ─── CURSOR (hover devices) ─── */
-(function initCursor() {
-  const $c = document.getElementById('cur');
-  const $r = document.getElementById('curR');
-  if (!$c || !$r) return;
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  if (window.matchMedia('(hover:hover)').matches) {
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      $c.style.left = mx + 'px'; $c.style.top = my + 'px';
-    }, {passive: true});
-    (function raf() {
-      rx += (mx - rx) * .12; ry += (my - ry) * .12;
-      $r.style.left = rx + 'px'; $r.style.top = ry + 'px';
-      requestAnimationFrame(raf);
-    })();
-    const hover = s => () => {
-      $c.style.width = s + 'px'; $c.style.height = s + 'px';
-      $r.style.width = (s * 2.4) + 'px'; $r.style.height = (s * 2.4) + 'px';
-    };
-    document.querySelectorAll('button,a,.pj-card,.sk-chip,.fp,.tbtn,.soc,.ph-btn,.m-close').forEach(el => {
-      el.addEventListener('mouseenter', hover(18));
-      el.addEventListener('mouseleave', hover(10));
-    });
-  }
-})();
-
 /* ─── SCROLL: PROGRESS BAR, NAV STATE & BACK-TO-TOP ─── */
 (function initScroll() {
   const prog = document.getElementById('prog');
@@ -163,16 +136,17 @@ renderSkillGroups();
 })();
 
 /* ─── SKILL BARS ─── */
+function barLevel(p) { return p >= 88 ? 'Advanced' : p >= 78 ? 'Proficient' : 'Familiar'; }
 (function initBars() {
   const w = document.getElementById('bars-w');
   if (!w) return;
   w.innerHTML = BARS.map(b =>
     `<div class="bar-row">
       <div class="bar-n">${b.n}</div>
-      <div class="bar-t" role="progressbar" aria-valuenow="${b.p}" aria-valuemin="0" aria-valuemax="100" aria-label="${b.n} proficiency ${b.p}%">
+      <div class="bar-t" role="img" aria-label="${b.n}: ${barLevel(b.p)}">
         <div class="bar-f" data-p="${b.p / 100}" style="background:linear-gradient(90deg,${b.c},var(--gold))"></div>
       </div>
-      <div class="bar-p">${b.p}%</div>
+      <div class="bar-p">${barLevel(b.p)}</div>
     </div>`
   ).join('');
   const barsCard = document.querySelector('.bars-card');
@@ -246,8 +220,8 @@ function renderProjects() {
       <div class="pj-img-w">
         <img src="${imageFallbackSrc('Loading project preview…')}" data-src="${p.img}" data-fallback-label="${p.title} preview unavailable" alt="${p.title} project preview" class="pj-img" loading="lazy" decoding="async"/>
         <div class="pj-hover" aria-hidden="true">
-          <a href="${p.live}" target="_blank" rel="noopener noreferrer" class="ph-btn" onclick="event.stopPropagation()" aria-label="View ${p.title} live">🔗 View</a>
-          <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="ph-btn" onclick="event.stopPropagation()" aria-label="View ${p.title} source code">⬡ Code</a>
+          <span class="ph-btn">Details</span>
+          ${p.github ? `<a href="${p.github}" target="_blank" rel="noopener noreferrer" class="ph-btn" onclick="event.stopPropagation()" aria-label="View ${p.title} source code">⬡ Code</a>` : ''}
         </div>
       </div>
       <div class="pj-body">
@@ -312,8 +286,9 @@ function openModal(id) {
   document.getElementById('m-desc').textContent = p.full;
   document.getElementById('m-hl').innerHTML = p.hl.map(h => `<div class="hl-i">${h}</div>`).join('');
   document.getElementById('m-tags').innerHTML = p.tech.map(t => `<span class="ptag">${t}</span>`).join('');
-  document.getElementById('m-live').href = p.live;
-  document.getElementById('m-git').href = p.github;
+  const git = document.getElementById('m-git');
+  git.href = p.github || '#';
+  git.parentElement.hidden = !p.github;
   const modal = document.getElementById('modal');
   if (!modal) return;
   modalLastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;

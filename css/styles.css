@@ -71,17 +71,6 @@ button,a{cursor:pointer;text-decoration:none;color:inherit;border:none;backgroun
 ::-webkit-scrollbar-track{background:var(--navy)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(to bottom,var(--em),var(--em2));border-radius:2px}
 
-/* ═══════════════════════════════════════════
-   CURSOR (hover devices)
-═══════════════════════════════════════════ */
-#cur,#curR{
-  position:fixed;pointer-events:none;z-index:9999;
-  border-radius:50%;transform:translate(-50%,-50%);
-  will-change:left,top;
-}
-#cur{width:10px;height:10px;background:var(--em);transition:width .18s,height .18s,background .25s,opacity .25s;mix-blend-mode:screen}
-#curR{width:36px;height:36px;border:1.5px solid rgba(0,200,150,.38);transition:width .22s,height .22s,border-color .25s,opacity .25s;mix-blend-mode:normal}
-@media(hover:none),(pointer:coarse){#cur,#curR{display:none}}
 
 /* ═══════════════════════════════════════════
    PROGRESS BAR
@@ -469,13 +458,13 @@ h1.hname{
   background:linear-gradient(90deg,transparent,var(--em),transparent);opacity:.4;
 }
 .bars-h{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:2rem}
-.bar-row{display:grid;grid-template-columns:150px 1fr 44px;align-items:center;gap:1.2rem;margin-bottom:1.2rem}
+.bar-row{display:grid;grid-template-columns:150px 1fr 78px;align-items:center;gap:1.2rem;margin-bottom:1.2rem}
 .bar-n{font-size:.82rem;color:var(--sub);text-align:right;font-family:'JetBrains Mono',monospace}
 .bar-t{height:5px;background:rgba(255,255,255,.06);border-radius:50px;overflow:hidden}
 .bar-f{height:100%;border-radius:50px;transform:scaleX(0);transform-origin:left;transition:transform 1.5s cubic-bezier(.34,1.4,.64,1);position:relative;overflow:hidden}
 .bar-f::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:bar-shine 2.5s ease-in-out infinite .5s}
 @keyframes bar-shine{0%,100%{left:-100%}50%{left:200%}}
-.bar-p{font-size:.74rem;color:var(--em);font-family:'JetBrains Mono',monospace;font-weight:500}
+.bar-p{font-size:.7rem;color:var(--em);font-family:'JetBrains Mono',monospace;font-weight:500}
 
 /* ═══════════════════════════════════════════
    PROJECTS
@@ -559,6 +548,7 @@ h1.hname{
 .hl-i::before{content:'▸';color:var(--em);font-size:.7rem;flex-shrink:0}
 .m-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.6rem}
 .m-btns{display:flex;gap:.8rem;flex-wrap:wrap}
+.m-btns[hidden]{display:none}
 
 /* ═══════════════════════════════════════════
    CONTACT
@@ -679,7 +669,7 @@ footer a:hover{color:var(--em3)}
   .nav-links{display:none}
   .hbg{display:flex}
   .sec{padding:5rem 5vw}
-  .bar-row{grid-template-columns:110px 1fr 38px}
+  .bar-row{grid-template-columns:110px 1fr 74px}
 }
 
 /* ═══════════════════════════════════════════
@@ -694,7 +684,8 @@ footer a:hover{color:var(--em3)}
   .sec{padding:4rem 5vw}
   .pj-grid{grid-template-columns:1fr}
   .bars-card{padding:1.6rem 1.2rem}
-  .bar-row{grid-template-columns:80px 1fr 34px;gap:.5rem}
+  .bar-row{grid-template-columns:80px 1fr 62px;gap:.5rem}
+  .bar-p{font-size:.62rem}
   .bar-n{font-size:.72rem}
   .hl-g{grid-template-columns:1fr}
   .m-btns{flex-direction:column}
