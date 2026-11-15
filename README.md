@@ -1,6 +1,6 @@
 # HusseinHany.github.io
 
-Personal portfolio site of Hussein Mansour. Live at **https://husseinhany.github.io**
+Personal portfolio site of Hussein Hany. Live at **https://husseinhany.github.io**
 
 ## What's on it
 
