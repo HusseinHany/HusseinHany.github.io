@@ -141,15 +141,18 @@ renderSkillGroups();
 })();
 
 /* ─── SKILL BARS ─── */
-function barLevel(p) { return p >= 88 ? 'Advanced' : p >= 78 ? 'Proficient' : 'Familiar'; }
+function barLevel(p) { return p + (p === 1 ? ' project' : ' projects'); }
 (function initBars() {
   const w = document.getElementById('bars-w');
   if (!w) return;
-  w.innerHTML = BARS.map(b =>
+  const total = PJS.length;
+  const counted = BARS.map(b => ({...b, p: PJS.filter(pr => pr.tech.some(t => b.match.includes(t))).length}))
+    .sort((a, b) => b.p - a.p);
+  w.innerHTML = counted.map(b =>
     `<div class="bar-row">
       <div class="bar-n">${b.n}</div>
       <div class="bar-t" role="img" aria-label="${b.n}: ${barLevel(b.p)}">
-        <div class="bar-f" data-p="${b.p / 100}" style="background:linear-gradient(90deg,${b.c},var(--gold))"></div>
+        <div class="bar-f" data-p="${b.p / total}" style="background:linear-gradient(90deg,${b.c},var(--gold))"></div>
       </div>
       <div class="bar-p">${barLevel(b.p)}</div>
     </div>`

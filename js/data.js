@@ -1,40 +1,45 @@
 /* ─── SKILL TABS DATA ─── */
 const TABS = [
-  {s:[{n:'Vue.js',i:'💚'},{n:'Nuxt.js',i:'🚀'},{n:'JavaScript',i:'⚡'},{n:'HTML5',i:'🌐'},{n:'CSS3',i:'🎨'},{n:'Tailwind CSS',i:'🌊'}]},
-  {s:[{n:'Node.js',i:'🟢'},{n:'Express.js',i:'⚙️'},{n:'MongoDB',i:'🍃'},{n:'REST APIs',i:'🔌'},{n:'SQL',i:'🗄️'}]},
-  {s:[{n:'Git',i:'🔀'},{n:'GitHub',i:'🐙'},{n:'VS Code',i:'💻'},{n:'npm',i:'📦'},{n:'Postman',i:'📬'},{n:'Linux',i:'🐧'}]}
+  {s:[{n:'Python',i:'🐍'},{n:'pandas',i:'🐼'},{n:'SQL',i:'🗄️'},{n:'Power BI',i:'📊'},{n:'Excel',i:'📗'},{n:'Statistics',i:'📈'}]},
+  {s:[{n:'C++',i:'⚙️'},{n:'C#',i:'🟣'},{n:'JavaScript',i:'⚡'},{n:'Data Structures',i:'🌳'},{n:'Algorithms',i:'🧮'},{n:'OOP',i:'🧱'}]},
+  {s:[{n:'Git',i:'🔀'},{n:'GitHub',i:'🐙'},{n:'Jupyter',i:'📓'},{n:'Visual Studio',i:'💻'},{n:'SQL Server',i:'🗃️'},{n:'Chart.js',i:'📉'}]}
 ];
 
 /* ─── SKILL GROUPS DATA (for dedicated skills section) ─── */
 const SKILL_GROUPS = [
   {
-    title:'Frontend',icon:'🎨',
-    skills:[{n:'Vue.js',i:'💚'},{n:'Nuxt.js',i:'🚀'},{n:'JavaScript',i:'⚡'},{n:'HTML5',i:'🌐'},{n:'CSS3',i:'🎨'},{n:'Tailwind CSS',i:'🌊'},{n:'Responsive UI',i:'📱'}]
+    title:'Data & AI',icon:'📊',
+    skills:[{n:'Python',i:'🐍'},{n:'pandas',i:'🐼'},{n:'SQL',i:'🗄️'},{n:'Power BI',i:'📊'},{n:'Excel',i:'📗'},{n:'Statistics',i:'📈'},{n:'Data Cleaning',i:'🧹'}]
   },
   {
-    title:'Backend',icon:'⚙️',
-    skills:[{n:'Node.js',i:'🟢'},{n:'Express.js',i:'⚙️'},{n:'MongoDB',i:'🍃'},{n:'REST APIs',i:'🔌'},{n:'JWT Auth',i:'🔐'},{n:'SQL',i:'🗄️'}]
+    title:'Programming',icon:'⚙️',
+    skills:[{n:'C++',i:'⚙️'},{n:'C#',i:'🟣'},{n:'JavaScript',i:'⚡'},{n:'HTML & CSS',i:'🌐'},{n:'Data Structures',i:'🌳'},{n:'Algorithms',i:'🧮'},{n:'OOP',i:'🧱'}]
   },
   {
-    title:'Tools & More',icon:'🔧',
-    skills:[{n:'Git',i:'🔀'},{n:'GitHub',i:'🐙'},{n:'VS Code',i:'💻'},{n:'npm',i:'📦'},{n:'Postman',i:'📬'},{n:'Linux',i:'🐧'},{n:'Docker',i:'🐳'}]
+    title:'Tools',icon:'🔧',
+    skills:[{n:'Git',i:'🔀'},{n:'GitHub',i:'🐙'},{n:'Jupyter',i:'📓'},{n:'Visual Studio',i:'💻'},{n:'SQL Server',i:'🗃️'},{n:'Chart.js',i:'📉'},{n:'Windows Forms',i:'🪟'}]
   }
 ];
 
-/* ─── SKILL BARS DATA ─── */
+/* ─── SKILL BARS DATA ───
+   Each bar counts the projects below whose tech list contains one of `match`,
+   so the numbers always follow the project cards. */
 const BARS = [
-  {n:'HTML/CSS',p:92,c:'#e34f26'},{n:'JavaScript (ES6+)',p:90,c:'#f7df1e'},
-  {n:'Git',p:88,c:'#f05032'},{n:'Vue.js',p:85,c:'#00c896'},
-  {n:'Node.js',p:82,c:'#68a063'},{n:'Express.js',p:80,c:'#00c896'},
-  {n:'MongoDB',p:78,c:'#4db33d'},{n:'Nuxt.js',p:75,c:'#2fffc0'},
-  {n:'SQL',p:70,c:'#00618a'}
+  {n:'C++',match:['C++'],c:'#00599c'},
+  {n:'Excel',match:['Excel'],c:'#217346'},
+  {n:'JavaScript',match:['JavaScript'],c:'#f7df1e'},
+  {n:'Data Structures & Algorithms',match:['Data Structures','Algorithms','Sorting'],c:'#00c896'},
+  {n:'Power BI',match:['Power BI'],c:'#f2c811'},
+  {n:'Python & pandas',match:['Python','pandas'],c:'#3776ab'},
+  {n:'SQL',match:['SQL','SQL Server'],c:'#4479a1'},
+  {n:'C#',match:['C#'],c:'#512bd4'}
 ];
 
 /* ─── TOOLS MARQUEE DATA ─── */
-const TOOLS = ['Vue.js','Nuxt.js','Node.js','Express.js','MongoDB','JavaScript','HTML5','CSS3','Tailwind CSS','Git'];
+const TOOLS = ['Python','pandas','SQL','Power BI','Excel','C++','C#','JavaScript','Git','Jupyter'];
 const TICONS = {
-  'Vue.js':'💚','Nuxt.js':'🚀','Node.js':'🟢','Express.js':'⚙️','MongoDB':'🍃',
-  'JavaScript':'⚡','HTML5':'🌐','CSS3':'🎨','Tailwind CSS':'🌊','Git':'🔀'
+  'Python':'🐍','pandas':'🐼','SQL':'🗄️','Power BI':'📊','Excel':'📗',
+  'C++':'⚙️','C#':'🟣','JavaScript':'⚡','Git':'🔀','Jupyter':'📓'
 };
 
 /* ─── CONTACT DATA ─── */

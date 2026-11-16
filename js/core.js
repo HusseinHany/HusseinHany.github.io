@@ -40,10 +40,10 @@ window.addEventListener('load', () => {
 
   /* Typewriter */
   const msgs = [
-    'Building full-stack apps that actually ship',
-    'MEVN stack — from API to UI',
-    'Vue.js on the front, Node.js in the back',
-    'Clean code. Fast products. Real results.'
+    'AI student at TH Deggendorf',
+    'Turning raw data into clear answers',
+    'C++ from the data structures up',
+    'Clean code. Clear numbers. Real results.'
   ];
   let mi = 0, ci = 0, del = false;
   const typed = document.getElementById('typed');
