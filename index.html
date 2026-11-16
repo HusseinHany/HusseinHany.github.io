@@ -37,7 +37,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/styles.css?v=20261117"/>
+<link rel="stylesheet" href="css/styles.css?v=20261117b"/>
 
 <!-- Structured Data / JSON-LD -->
 <script type="application/ld+json">
@@ -213,6 +213,7 @@
       <div class="eyebrow" aria-hidden="true">What I Work With</div>
       <h2 class="sec-h" id="skills-heading">My <span class="em-txt">Tech Stack</span></h2>
       <div class="divider" aria-hidden="true"></div>
+      <p class="sk-hint">Click a skill with a number to see the projects that use it.</p>
     </div>
     <div class="sk-groups rv d1" id="sk-groups-wrap" role="list" aria-label="Skills grouped by category"></div>
     <div class="bars-card rv d2">
@@ -235,6 +236,7 @@
       <button class="fp" data-c="C++ Engineering" aria-pressed="false">C++ Engineering</button>
       <button class="fp" data-c="Data Analytics" aria-pressed="false">Data Analytics</button>
       <button class="fp" data-c="Desktop Apps" aria-pressed="false">Desktop Apps</button>
+      <button class="fp fp-skill on" id="fp-skill" type="button" hidden onclick="clearSkill()"></button>
     </div>
     <div class="pj-grid" id="pj-g" role="list" aria-label="Projects"></div>
   </div>
@@ -290,7 +292,10 @@
 <div class="mbg" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" aria-hidden="true" onclick="closeModal(event)">
   <div class="mbox">
     <button class="m-close" id="m-close-btn" onclick="closeModalBtn()" aria-label="Close project details">✕</button>
-    <img src="" alt="" class="m-img" id="m-img"/>
+    <div class="m-media" id="m-media">
+      <img src="" alt="" class="m-img" id="m-img"/>
+      <img src="" alt="" class="m-demo" id="m-demo" hidden/>
+    </div>
     <div class="m-body">
       <div class="m-cat" id="m-cat"></div>
       <h2 class="m-title" id="m-title"></h2>
@@ -298,10 +303,16 @@
       <div class="m-hl-t">Key Highlights</div>
       <div class="hl-g" id="m-hl"></div>
       <div class="m-tags" id="m-tags" aria-label="Technologies"></div>
-      <div class="m-btns">
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-p" id="m-live" style="font-size:.88rem;padding:.75rem 1.6rem"><span>↗ Live demo</span></a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-o" id="m-git" style="font-size:.88rem;padding:.75rem 1.6rem">⬡ GitHub</a>
+      <div class="m-btns" id="m-btns">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-p m-btn" id="m-live" hidden><span>↗ Open live dashboard</span></a>
+        <button type="button" class="btn-p m-btn" id="m-demo-btn" hidden onclick="toggleDemo()"><span id="m-demo-lbl">▶ Watch the demo</span></button>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-o m-btn" id="m-git" hidden>⬡ Source code on GitHub</a>
       </div>
+      <nav class="m-nav" aria-label="Browse projects">
+        <button type="button" class="m-step" id="m-prev" onclick="stepModal(-1)"><span aria-hidden="true">←</span> <span class="m-step-t" id="m-prev-t"></span></button>
+        <span class="m-count" id="m-count" aria-live="polite"></span>
+        <button type="button" class="m-step" id="m-next" onclick="stepModal(1)"><span class="m-step-t" id="m-next-t"></span> <span aria-hidden="true">→</span></button>
+      </nav>
     </div>
   </div>
 </div>
@@ -316,7 +327,6 @@
 
 <script>const IMG_PHOTO = "img/photo.jpg";
 const IMG_PROJ1 = "img/project-candy.svg";
-const IMG_PROJ2 = "img/project-insightflow.svg";
 const IMG_PROJ3 = "img/project-sales.svg";
 const IMG_PROJ4 = "img/project-bank.svg";
 const IMG_PROJ5 = "img/project-finance.svg";
@@ -329,10 +339,10 @@ const IMG_STUDENT = "img/project-student.svg";
 </script>
 
 <!-- JavaScript Modules -->
-<script src="js/data.js?v=20261117"></script>
-<script src="js/utils.js?v=20261117"></script>
-<script src="js/ui.js?v=20261117"></script>
-<script src="js/core.js?v=20261117"></script>
+<script src="js/data.js?v=20261117b"></script>
+<script src="js/utils.js?v=20261117b"></script>
+<script src="js/ui.js?v=20261117b"></script>
+<script src="js/core.js?v=20261117b"></script>
 
 </body>
 </html>

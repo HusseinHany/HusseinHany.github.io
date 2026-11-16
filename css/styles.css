@@ -747,3 +747,92 @@ footer a:hover{color:var(--em3)}
 button,a,.fp,.tbtn,.pj-card{touch-action:manipulation}
 .mbox{transition:transform .22s cubic-bezier(.22,1,.36,1)}
 .mob-menu a{transition:color .2s,opacity .25s,transform .25s}
+
+/* ═══════════════════════════════════════════
+   POLISH LAYER — colour depth, real-button states, smoother motion
+═══════════════════════════════════════════ */
+[hidden]{display:none !important}
+:root{
+  --navy:#040b14;--navy2:#07121e;--navy3:#0a1928;--navy4:#0e2135;
+  --sub:#a9bfd6;--muted:#8099b4;--sky:#4aa8ff;
+  --border:rgba(120,200,190,.12);--bord2:rgba(0,200,150,.3);
+  --ease-out:cubic-bezier(.22,1,.36,1);
+}
+:root[data-theme="light"]{--sky:#1f6fd1}
+::selection{background:rgba(0,200,150,.32);color:var(--text)}
+body{
+  background:
+    radial-gradient(1100px 620px at 88% -8%,rgba(74,168,255,.075),transparent 62%),
+    radial-gradient(900px 560px at -8% 28%,rgba(0,200,150,.065),transparent 62%),
+    var(--navy);
+  background-attachment:fixed;
+}
+:root[data-theme="light"] body{background:var(--navy)}
+
+/* nav: the section on screen */
+.nav-links a.on{color:var(--text)}
+.nav-links a.on::after{width:100%;background:linear-gradient(90deg,var(--em),var(--sky))}
+
+/* buttons: tactile press */
+.btn-p,.btn-o{will-change:transform}
+.btn-p:active,.btn-o:active,.fp:active,.m-step:active,.ph-btn:active{transform:translateY(0) scale(.97) !important;transition-duration:.08s}
+.btn-o{border-color:rgba(169,191,214,.22)}
+
+/* hero name gradient with a cool accent */
+.hname-l2{background-image:linear-gradient(110deg,var(--em) 0%,var(--em3) 40%,var(--sky) 75%,var(--em) 100%)}
+
+/* project cards: cursor glow + smooth tilt */
+.pj-card{transition:transform .5s var(--ease-out),border-color .4s,box-shadow .4s}
+.pj-card.tilting{transition:transform .14s ease-out,border-color .4s,box-shadow .4s}
+.pj-card::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;
+  background:radial-gradient(460px circle at var(--mx,50%) var(--my,50%),rgba(0,200,150,.12),rgba(74,168,255,.05) 35%,transparent 60%);
+  opacity:0;transition:opacity .4s;
+}
+.pj-card:hover::after{opacity:1}
+.pj-body{position:relative;z-index:2}
+.pj-t{transition:color .3s}
+.pj-card:hover .pj-t{color:var(--em3)}
+.pj-card:focus-visible{outline:2px solid var(--em);outline-offset:4px}
+.ph-btn{font-family:inherit;cursor:pointer}
+
+/* filters: counts and the skill filter */
+.fp{display:inline-flex;align-items:center}
+.fp-n{display:inline-grid;place-items:center;min-width:1.45em;height:1.45em;padding:0 .35em;margin-left:.4rem;border-radius:50px;font-size:.66rem;font-weight:600;background:rgba(0,200,150,.13);color:var(--em);transition:background .3s,color .3s}
+.fp.on .fp-n,.fp:hover .fp-n{background:rgba(4,11,20,.2);color:var(--navy)}
+.fp-skill{background:linear-gradient(135deg,var(--sky),var(--em)) !important;border-color:transparent !important;color:#04111c !important;gap:.45rem}
+
+/* skills that lead to projects */
+.sk-hint{margin:-1.4rem 0 2rem;font-size:.85rem;color:var(--muted)}
+button.sk-chip{font:inherit;font-size:.76rem;width:100%;cursor:pointer;color:var(--sub)}
+.sk-link{border-color:rgba(0,200,150,.2)}
+.sk-n{position:absolute;top:.35rem;right:.45rem;min-width:1.25rem;height:1.25rem;padding:0 .3rem;border-radius:50px;display:grid;place-items:center;font-size:.62rem;font-weight:700;background:rgba(0,200,150,.16);color:var(--em);z-index:1;transition:background .3s,color .3s}
+.sk-link:hover .sk-n{background:var(--em);color:var(--navy)}
+
+/* modal: media, demo player, browsing */
+.m-media{position:relative;background:#0b1622;border-radius:var(--rL) var(--rL) 0 0;overflow:hidden}
+.m-demo{width:100%;height:auto;display:block}
+.m-btn{font-size:.88rem;padding:.75rem 1.6rem}
+.m-nav{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid var(--border)}
+.m-step{display:inline-flex;align-items:center;gap:.45rem;max-width:42%;padding:.55rem .95rem;border:1px solid var(--border);border-radius:50px;font-size:.78rem;color:var(--sub);transition:all .25s var(--ease-out)}
+.m-step-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.m-step:hover{border-color:var(--em);color:var(--em);background:rgba(0,200,150,.08)}
+#m-prev:hover{transform:translateX(-3px)}
+#m-next:hover{transform:translateX(3px)}
+.m-count{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);white-space:nowrap}
+.mbox{scroll-behavior:smooth}
+.mbox.swap-r .m-media,.mbox.swap-r .m-body{animation:swapR .42s var(--ease-out)}
+.mbox.swap-l .m-media,.mbox.swap-l .m-body{animation:swapL .42s var(--ease-out)}
+@keyframes swapR{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+@keyframes swapL{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+.mbg{transition:opacity .3s var(--ease-out)}
+.mbox{transition:transform .45s var(--ease-out)}
+
+@media(max-width:600px){
+  .m-step{max-width:40%;padding:.5rem .7rem}
+  .sk-hint{margin-top:-1rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .mbox.swap-r .m-media,.mbox.swap-r .m-body,.mbox.swap-l .m-media,.mbox.swap-l .m-body{animation:none}
+  .pj-card::after{display:none}
+}

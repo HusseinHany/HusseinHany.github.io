@@ -86,6 +86,57 @@ function toggleTheme() {
   }
 }
 
+/* ─── SKILLS → PROJECTS ─── */
+/* A skill chip is a button only when at least one project uses that skill:
+   clicking it shows those projects. */
+const SKILL_MATCH = {
+  'SQL': ['SQL', 'SQL Server'], 'Excel': ['Excel', 'Pivot Tables'], 'Algorithms': ['Algorithms', 'Sorting'],
+  'OOP': ['OOP', 'Inheritance'], 'Data Cleaning': ['pandas'], 'Jupyter': ['pandas']
+};
+let activeSkill = null;
+
+function projectsUsing(skill) {
+  const terms = SKILL_MATCH[skill] || [skill];
+  return PJS.filter(p => p.tech.some(t => terms.includes(t)));
+}
+
+function skillChip(s) {
+  const n = projectsUsing(s.n).length;
+  const inner = `<span class="sk-icon" aria-hidden="true">${s.i}</span><span>${s.n}</span>`;
+  if (!n) return `<div class="sk-chip">${inner}</div>`;
+  return `<button type="button" class="sk-chip sk-link" onclick="showSkill('${s.n.replace(/'/g, "\\'")}')"
+    aria-label="Show the ${n} project${n === 1 ? '' : 's'} that use ${s.n}" title="See the ${n} project${n === 1 ? '' : 's'} that use ${s.n}">${inner}<span class="sk-n">${n}</span></button>`;
+}
+
+function setCategoryPill(cat) {
+  document.querySelectorAll('.fp[data-c]').forEach(x => {
+    const on = x.dataset.c === cat;
+    x.classList.toggle('on', on);
+    x.setAttribute('aria-pressed', String(on));
+  });
+}
+
+function showSkill(skill) {
+  activeSkill = skill;
+  activeCat = 'All';
+  setCategoryPill('All');
+  const pill = document.getElementById('fp-skill');
+  if (pill) {
+    pill.hidden = false;
+    pill.innerHTML = `Using ${skill} <span aria-hidden="true">✕</span>`;
+    pill.setAttribute('aria-label', `Showing projects that use ${skill}. Click to show all projects.`);
+  }
+  renderProjects();
+  goTo('projects');
+}
+
+function clearSkill() {
+  activeSkill = null;
+  const pill = document.getElementById('fp-skill');
+  if (pill) pill.hidden = true;
+  renderProjects();
+}
+
 /* ─── SKILL TABS ─── */
 let curTab = 0;
 
@@ -110,7 +161,7 @@ function switchTab(i, btn) {
 function renderSkillTab() {
   document.getElementById('tab-c').innerHTML =
     `<div class="sk-grid">${TABS[curTab].s.map(s =>
-      `<div class="sk-chip"><span class="sk-icon" aria-hidden="true">${s.i}</span><span>${s.n}</span></div>`
+      skillChip(s)
     ).join('')}</div>`;
 }
 renderSkillTab();
@@ -123,7 +174,7 @@ function renderSkillGroups() {
     <div class="sk-group">
       <div class="sk-group-hdr">${g.title}</div>
       <div class="sk-grid">${g.skills.map(s =>
-        `<div class="sk-chip"><span class="sk-icon" aria-hidden="true">${s.i}</span><span>${s.n}</span></div>`
+        skillChip(s)
       ).join('')}</div>
     </div>`
   ).join('');
@@ -217,7 +268,7 @@ function initProjectImages(scope) {
 }
 
 function renderProjects() {
-  const list = activeCat === 'All' ? PJS : PJS.filter(p => p.cat === activeCat);
+  const list = visibleProjects();
   const g = document.getElementById('pj-g');
   if (!g) return;
   g.innerHTML = list.map(p => `
@@ -228,8 +279,9 @@ function renderProjects() {
       <div class="pj-img-w">
         <img src="${imageFallbackSrc('Loading project preview…')}" data-src="${p.img}" data-fallback-label="${p.title} preview unavailable" alt="${p.title} project preview" class="pj-img" loading="lazy" decoding="async"/>
         <div class="pj-hover" aria-hidden="true">
-          <span class="ph-btn">Details</span>
+          <span class="ph-btn">View details</span>
           ${p.live ? `<a href="${p.live}" target="_blank" rel="noopener noreferrer" class="ph-btn" onclick="event.stopPropagation()" aria-label="Open the live ${p.title}">↗ Live</a>` : ''}
+          ${p.demo ? `<button type="button" class="ph-btn" onclick="event.stopPropagation();openModal(${p.id},true)" aria-label="Watch the ${p.title} demo">▶ Demo</button>` : ''}
           ${p.github ? `<a href="${p.github}" target="_blank" rel="noopener noreferrer" class="ph-btn" onclick="event.stopPropagation()" aria-label="View ${p.title} source code">⬡ Code</a>` : ''}
         </div>
       </div>
@@ -242,15 +294,24 @@ function renderProjects() {
     </article>`).join('');
 
   /* tilt effect */
-  if (window.matchMedia('(hover:hover)').matches) {
+  if (window.matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches) {
     g.querySelectorAll('.pj-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
+      let frame = 0, ev = null;
+      const apply = () => {
+        frame = 0;
         const r = card.getBoundingClientRect(),
-          x = (e.clientX - r.left - r.width / 2) / r.width,
-          y = (e.clientY - r.top - r.height / 2) / r.height;
-        card.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 8}deg) translateY(-8px)`;
+          px = (ev.clientX - r.left) / r.width, py = (ev.clientY - r.top) / r.height;
+        card.style.setProperty('--mx', (px * 100) + '%');
+        card.style.setProperty('--my', (py * 100) + '%');
+        card.style.transform = `perspective(1000px) rotateY(${(px - .5) * 7}deg) rotateX(${(.5 - py) * 6}deg) translateY(-8px)`;
+      };
+      card.addEventListener('mousemove', e => { ev = e; if (!frame) frame = requestAnimationFrame(apply); });
+      card.addEventListener('mouseenter', () => card.classList.add('tilting'));
+      card.addEventListener('mouseleave', () => {
+        cancelAnimationFrame(frame); frame = 0;
+        card.classList.remove('tilting');
+        card.style.transform = '';
       });
-      card.addEventListener('mouseleave', () => card.style.transform = '');
     });
   }
   initProjectImages(g);
@@ -258,12 +319,20 @@ function renderProjects() {
 }
 renderProjects();
 
-document.querySelectorAll('.fp').forEach(p => {
+/* how many projects each filter shows */
+document.querySelectorAll('.fp[data-c]').forEach(p => {
+  const n = p.dataset.c === 'All' ? PJS.length : PJS.filter(x => x.cat === p.dataset.c).length;
+  p.insertAdjacentHTML('beforeend', ` <span class="fp-n">${n}</span>`);
+  p.setAttribute('aria-label', `${p.dataset.c}: ${n} project${n === 1 ? '' : 's'}`);
+});
+
+document.querySelectorAll('.fp[data-c]').forEach(p => {
   p.addEventListener('click', function() {
-    document.querySelectorAll('.fp').forEach(x => { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
-    this.classList.add('on');
-    this.setAttribute('aria-pressed', 'true');
+    setCategoryPill(this.dataset.c);
     activeCat = this.dataset.c;
+    activeSkill = null;
+    const pill = document.getElementById('fp-skill');
+    if (pill) pill.hidden = true;
     if (hasGsap) {
       gsap.to('.pj-card', {opacity: 0, duration: .1, onComplete: renderProjects});
     } else {
@@ -281,29 +350,95 @@ function getModalFocusable(modal) {
     .filter(el => !el.hasAttribute('hidden'));
 }
 
-function openModal(id) {
-  const p = PJS.find(x => x.id === id);
-  if (!p) return;
-  const modalImage = document.getElementById('m-img');
-  if (modalImage) {
-    modalImage.alt = p.title + ' project image';
-    modalImage.onerror = () => applyImageFallback(modalImage, p.title + ' image unavailable');
-    modalImage.src = p.img;
+let modalId = null;
+
+function visibleProjects() {
+  let list = activeCat === 'All' ? PJS : PJS.filter(p => p.cat === activeCat);
+  if (activeSkill) {
+    const using = projectsUsing(activeSkill);
+    list = list.filter(p => using.includes(p));
   }
+  return list;
+}
+
+function fillModal(p, playDemo) {
+  modalId = p.id;
+  const img = document.getElementById('m-img');
+  img.alt = p.title + ' project image';
+  img.onerror = () => applyImageFallback(img, p.title + ' image unavailable');
+  img.src = p.img;
   document.getElementById('m-cat').textContent = p.cat;
   document.getElementById('m-title').textContent = p.title;
   document.getElementById('m-desc').textContent = p.full;
   document.getElementById('m-hl').innerHTML = p.hl.map(h => `<div class="hl-i">${h}</div>`).join('');
   document.getElementById('m-tags').innerHTML = p.tech.map(t => `<span class="ptag">${t}</span>`).join('');
-  const git = document.getElementById('m-git');
-  git.href = p.github || '#';
-  git.hidden = !p.github;
+
+  /* Only buttons that lead somewhere real are shown */
   const live = document.getElementById('m-live');
-  live.href = p.live || '#';
   live.hidden = !p.live;
-  git.parentElement.hidden = !p.github && !p.live;
+  if (p.live) live.href = p.live;
+  const git = document.getElementById('m-git');
+  git.hidden = !p.github;
+  if (p.github) git.href = p.github;
+  document.getElementById('m-demo-btn').hidden = !p.demo;
+  document.getElementById('m-btns').hidden = !p.live && !p.github && !p.demo;
+  showDemo(false);
+  if (playDemo && p.demo) showDemo(true);
+
+  /* previous / next within the projects currently shown */
+  const list = visibleProjects();
+  const i = Math.max(0, list.findIndex(x => x.id === p.id));
+  const prev = list[(i - 1 + list.length) % list.length], next = list[(i + 1) % list.length];
+  const nav = document.querySelector('.m-nav');
+  nav.hidden = list.length < 2;
+  document.getElementById('m-prev-t').textContent = prev.title;
+  document.getElementById('m-next-t').textContent = next.title;
+  document.getElementById('m-prev').setAttribute('aria-label', 'Previous project: ' + prev.title);
+  document.getElementById('m-next').setAttribute('aria-label', 'Next project: ' + next.title);
+  document.getElementById('m-count').textContent = `${i + 1} / ${list.length}`;
+}
+
+/* The demo is the real terminal recording, played in place of the cover */
+function showDemo(on) {
+  const p = PJS.find(x => x.id === modalId);
+  const demo = document.getElementById('m-demo'), img = document.getElementById('m-img');
+  const lbl = document.getElementById('m-demo-lbl');
+  if (!demo || !img) return;
+  if (on && p && p.demo) {
+    demo.alt = 'Recording of ' + p.title + ' running in a terminal';
+    demo.src = p.demo + '#t=' + Date.now();   /* a fresh load starts the recording from the beginning */
+    demo.hidden = false; img.hidden = true;
+    if (lbl) lbl.textContent = '■ Show the cover';
+  } else {
+    demo.hidden = true; demo.removeAttribute('src'); img.hidden = false;
+    if (lbl) lbl.textContent = '▶ Watch the demo';
+  }
+}
+
+function toggleDemo() {
+  const on = document.getElementById('m-demo').hidden;
+  showDemo(on);
+  if (on) document.querySelector('.mbox').scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function stepModal(dir) {
+  const list = visibleProjects();
+  if (list.length < 2) return;
+  const i = list.findIndex(x => x.id === modalId);
+  const next = list[(i + dir + list.length) % list.length];
+  const box = document.querySelector('.mbox');
+  box.classList.remove('swap-l', 'swap-r');
+  void box.offsetWidth;   /* restart the slide animation */
+  box.classList.add(dir > 0 ? 'swap-r' : 'swap-l');
+  fillModal(next, false);
+  box.scrollTop = 0;
+}
+
+function openModal(id, playDemo = false) {
+  const p = PJS.find(x => x.id === id);
   const modal = document.getElementById('modal');
-  if (!modal) return;
+  if (!p || !modal) return;
+  fillModal(p, playDemo);
   modalLastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
   modal.classList.add('show');
   modal.setAttribute('aria-hidden', 'false');
@@ -320,6 +455,7 @@ function closeModalBtn() {
   if (!modal) return;
   modal.classList.remove('show');
   modal.setAttribute('aria-hidden', 'true');
+  showDemo(false);
   document.body.style.overflow = '';
   if (modalLastFocused && typeof modalLastFocused.focus === 'function') modalLastFocused.focus();
   modalLastFocused = null;
@@ -330,6 +466,11 @@ document.addEventListener('keydown', e => {
   if (!modal || modal.getAttribute('aria-hidden') !== 'false') return;
   if (e.key === 'Escape') {
     closeModalBtn();
+    return;
+  }
+  if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+    e.preventDefault();
+    stepModal(e.key === 'ArrowRight' ? 1 : -1);
     return;
   }
   if (e.key !== 'Tab') return;
@@ -386,10 +527,12 @@ async function submitForm(e) {
     fd.append('name', name); fd.append('email', email); fd.append('message', msg);
     fd.append('_subject', 'New message from your portfolio!');
     fd.append('_captcha', 'false');
-    const res = await fetch(`https://formsubmit.co/${encodeURIComponent(getContactEmail())}`, {
+    /* The AJAX endpoint answers with JSON, so "sent" is only shown when FormSubmit confirms it */
+    const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(getContactEmail())}`, {
       method: 'POST', body: fd, headers: {Accept: 'application/json'}
     });
-    if (res.ok) {
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && String(data.success) === 'true') {
       showToast('✓ Message sent! I\'ll reply soon.');
       document.getElementById('cform').reset();
       document.getElementById('fct').textContent = '0';
@@ -453,3 +596,46 @@ if (tlContainer) {
   }, {threshold: .2});
   tlObserver.observe(tlContainer);
 }
+
+/* ─── NAV: HIGHLIGHT THE SECTION ON SCREEN ─── */
+(function initScrollSpy() {
+  const links = [...document.querySelectorAll('.nav-links a[href^="#"]:not(.nav-hire)')];
+  const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  if (!sections.length) return;
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      links.forEach(a => {
+        const on = a.getAttribute('href') === '#' + en.target.id;
+        a.classList.toggle('on', on);
+        if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+      });
+    });
+  }, {rootMargin: '-45% 0px -50% 0px'});
+  sections.forEach(sec => spy.observe(sec));
+})();
+
+/* ─── MAGNETIC CALL-TO-ACTION BUTTONS ─── */
+if (window.matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches) {
+  document.querySelectorAll('.hero-ctas .btn-p, .hero-ctas .btn-o').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      btn.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .18}px, ${(e.clientY - r.top - r.height / 2) * .28 - 3}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+}
+
+/* ─── MODAL: SWIPE BETWEEN PROJECTS ON TOUCH SCREENS ─── */
+(function initModalSwipe() {
+  const box = document.querySelector('.mbox');
+  if (!box) return;
+  let x0 = null, y0 = 0;
+  box.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, {passive: true});
+  box.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    x0 = null;
+    if (Math.abs(dx) > 70 && Math.abs(dy) < 50) stepModal(dx < 0 ? 1 : -1);
+  }, {passive: true});
+})();

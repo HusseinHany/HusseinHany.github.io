@@ -327,29 +327,3 @@ art = f'''<g transform="translate(470 108)" font-family="{F}">
 page('project-candy.svg', 'Candy Line Sales Overview dashboard', 'LIVE DASHBOARD', ['Candy Line', 'Sales'],
      ['307 orders · 7 product lines · 19 countries'], ['Excel', 'Statistics', 'Chart.js'], art, c,
      defs=f'<linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{EM}" stop-opacity=".4"/><stop offset="1" stop-color="{EM}" stop-opacity="0"/></linearGradient>')
-
-# ── InsightFlow ──────────────────────────────────────────────────────
-c = Cover()
-pins = [(80, 110), (190, 80), (300, 130), (130, 200), (250, 220)]
-links = ''.join(f'<path class="flow" d="M{a[0]} {a[1]} L{b[0]} {b[1]}" stroke="{BLUE}" stroke-opacity=".7" stroke-width="2" fill="none"/>'
-                for a, b in zip(pins, pins[1:]))
-pinsvg = ''.join(f'<circle class="ring" cx="{x}" cy="{y}" r="9" fill="none" stroke="{EM2}" stroke-width="2" style="animation-delay:{i * 0.45:.2f}s"/>'
-                 f'<g class="pop"{c.d(0.2 + i * 0.15)}><circle cx="{x}" cy="{y}" r="8" fill="{EM2}" stroke="#0f1826" stroke-width="3"/></g>'
-                 for i, (x, y) in enumerate(pins))
-sales, profit = [30, 42, 36, 48, 54, 50, 62, 70], [14, 18, 15, 23, 26, 24, 31, 36]
-bb = ''.join(f'<rect class="up" x="{30 + i * 40}" y="{352 - s}" width="14" height="{s}" rx="3" fill="{BLUE}"{c.d(0.8 + i * 0.08)}/>'
-             f'<rect class="up" x="{46 + i * 40}" y="{352 - p}" width="14" height="{p}" rx="3" fill="{EM}"{c.d(0.85 + i * 0.08)}/>'
-             for i, (s, p) in enumerate(zip(sales, profit)))
-art = f'''<g transform="translate(470 108)" font-family="{F}">
-{panel(0, 0, 380, 384)}
-<rect x="20" y="20" width="340" height="230" rx="10" fill="#0b1522"/>
-<rect x="20" y="20" width="340" height="230" rx="10" fill="url(#dots)"/>
-<text x="34" y="46" font-size="13" font-weight="700" fill="{MUTED}">Sales by city</text>
-{links}{pinsvg}
-<line x1="20" y1="352" x2="360" y2="352" stroke="#2f3d50" stroke-width="1.5"/>
-<g font-size="12" fill="{MUTED}"><circle cx="34" cy="270" r="5" fill="{BLUE}"/><text x="44" y="274">Sales</text>
-<circle cx="96" cy="270" r="5" fill="{EM}"/><text x="106" y="274">Profit</text></g>
-{bb}
-</g>'''
-page('project-insightflow.svg', 'InsightFlow sales and profit dashboard', 'POWER BI · EXCEL', ['InsightFlow'],
-     ['Sales and profit by city'], ['Power BI', 'Excel'], art, c, size=60)

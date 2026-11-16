@@ -2,12 +2,22 @@
 /* hasGsap/hasScrollTrigger (from utils.js) guard against a blocked/failed CDN
    load, so hero content isn't left permanently invisible. */
 if (hasScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+/* Run animations on real time: by default GSAP pauses its clock during the
+   heavy first frames of page load, which left the hero half-faded for
+   seconds on slower devices. */
+if (hasGsap) gsap.ticker.lagSmoothing(0);
 
 /* ─── HERO ENTRANCE ─── */
-window.addEventListener('load', () => {
+function startHero() {
   /* Set profile photo */
   try { document.getElementById('pimg').src = IMG_PHOTO; } catch(e) {}
   try { document.getElementById('aimg').src = IMG_PHOTO; } catch(e) {}
+
+  /* hero stats come from the project list itself */
+  const statP = document.querySelector('.stat-n[data-t]');
+  if (statP && typeof PJS !== 'undefined') statP.dataset.t = PJS.length;
+  const statT = document.querySelectorAll('.stat-n[data-t]')[1];
+  if (statT && typeof TOOLS !== 'undefined') statT.dataset.t = TOOLS.length;
 
   if (!hasGsap) {
     document.querySelectorAll('.orb,#hbadge,#hname,#hrole,#htype,#hctas,#hstats,#hphoto')
@@ -15,7 +25,7 @@ window.addEventListener('load', () => {
     document.querySelectorAll('.stat-n').forEach(el => { el.textContent = (+el.dataset.t) + '+'; });
   } else {
   /* Orbs fade in */
-  gsap.to('.orb', {opacity: 1, duration: 2.8, stagger: .45, ease: 'power2.out'});
+  gsap.to('.orb', {opacity: 1, duration: 1.6, stagger: .25, ease: 'power2.out'});
 
   /* Sequence */
   const seq = [
@@ -32,7 +42,7 @@ window.addEventListener('load', () => {
   /* Counters */
   document.querySelectorAll('.stat-n').forEach(el => {
     const t = +el.dataset.t;
-    gsap.to({v: 0}, {v: t, duration: 1.4, delay: .9, ease: 'power2.out',
+    gsap.to({v: 0}, {v: t, duration: 1.2, delay: .7, ease: 'power2.out',
       onUpdate: function() { el.textContent = Math.round(this.targets()[0].v) + '+'; }
     });
   });
@@ -58,7 +68,7 @@ window.addEventListener('load', () => {
     }
     setTimeout(type, del ? 36 : 65);
   }
-  setTimeout(type, 900);
+  setTimeout(type, 600);
 
   if (!hasScrollTrigger) return;
 
@@ -134,4 +144,10 @@ window.addEventListener('load', () => {
       );
     }
   });
-});
+}
+
+/* Start as soon as the page is parsed (scripts load at the end of <body>);
+   re-measure scroll positions once images have loaded. */
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startHero);
+else startHero();
+window.addEventListener('load', () => { if (hasScrollTrigger) ScrollTrigger.refresh(); });
