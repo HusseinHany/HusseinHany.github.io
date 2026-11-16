@@ -213,7 +213,7 @@ art = f'''<g transform="translate(470 120)" font-family="{F}">
 <text x="24" y="40" font-size="15" font-weight="700" fill="{INK}">Cash flow</text>
 <g font-size="12" fill="{MUTED}"><circle cx="170" cy="36" r="5" fill="{EM}"/><text x="180" y="40">Income</text>
 <circle cx="240" cy="36" r="5" fill="{ORANGE}"/><text x="250" y="40">Expenses</text>
-<line x1="314" y1="36" x2="330" y2="36" stroke="{GOLD}" stroke-width="2.5" stroke-dasharray="4 3"/><text x="334" y="40">Plan</text></g>
+<line x1="314" y1="36" x2="330" y2="36" stroke="{GOLD}" stroke-width="2.5" stroke-dasharray="4 3"/><text x="334" y="40">Return</text></g>
 <line x1="20" y1="{base}" x2="360" y2="{base}" stroke="#2f3d50" stroke-width="1.5"/>
 <line x1="300" y1="70" x2="300" y2="{base}" stroke="{LINE}" stroke-width="1.5" stroke-dasharray="3 5"/>
 {bars}
@@ -226,7 +226,7 @@ art = f'''<g transform="translate(470 120)" font-family="{F}">
 <circle r="26" fill="{GOLD}"/><circle r="19" fill="none" stroke="#a87f10" stroke-width="2"/>
 <text y="9" text-anchor="middle" font-family="{F}" font-size="26" font-weight="800" fill="#5a4205">$</text></g></g>'''
 page('project-finance.svg', 'Finance Flare', 'TEAM PROJECT · C++', ['Finance', 'Flare'],
-     ['Expenses · income · forecasting'], ['C++', 'OOP', 'Power BI'], art, c, glow=GOLD)
+     ['Income · expenses · investment returns'], ['C++', 'OOP', 'File I/O'], art, c, glow=GOLD)
 
 # ── Bank Management System ───────────────────────────────────────────
 c = Cover()
