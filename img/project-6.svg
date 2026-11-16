@@ -34,6 +34,7 @@
     <rect x="88" y="4" width="8" height="10" rx="2" fill="#f5c842"/>
   </g>
 
+  <g transform="translate(0 46)">
   <!-- Title -->
   <text x="70" y="150" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#2fffc0" letter-spacing="4">DESKTOP APP</text>
   <text x="68" y="222" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="56" font-weight="800" fill="#e2eeff" letter-spacing="-1.5">Escape Room</text>
@@ -48,5 +49,6 @@
     <text x="217" y="394" text-anchor="middle" fill="#e2eeff">Windows Forms</text>
     <rect x="304" y="372" width="122" height="34" rx="17" fill="#0a1e30" stroke="#00c896" stroke-opacity=".6"/>
     <text x="365" y="394" text-anchor="middle" fill="#e2eeff">SQL Server</text>
+  </g>
   </g>
 </svg>

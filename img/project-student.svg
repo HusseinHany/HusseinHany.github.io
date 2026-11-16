@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" role="img" aria-labelledby="t">
+  <title id="t">Student Management System: sorting algorithm benchmark</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#010810"/><stop offset=".6" stop-color="#061522"/><stop offset="1" stop-color="#0a1e30"/></linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3987e5" stop-opacity=".25"/><stop offset="1" stop-color="#3987e5" stop-opacity="0"/></radialGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="#96afc8" opacity=".14"/></pattern>
+  </defs>
+  <rect width="900" height="600" fill="url(#bg)"/><rect width="900" height="600" fill="url(#dots)"/>
+  <circle cx="680" cy="300" r="290" fill="url(#glow)"/>
+  <!-- Benchmark at 10,000 records (comparisons, millions, log-free bar lengths scaled to bubble sort) -->
+  <g transform="translate(-40 0)">
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15">
+    <text x="500" y="168" fill="#96afc8" font-weight="700">Comparisons at 10,000 records</text>
+    <text x="500" y="212" fill="#e2eeff">Bubble</text><rect x="600" y="196" width="230" height="22" rx="5" fill="#d95926"/><text x="838" y="212" fill="#96afc8">50M</text>
+    <text x="500" y="256" fill="#e2eeff">Selection</text><rect x="600" y="240" width="230" height="22" rx="5" fill="#d95926"/><text x="838" y="256" fill="#96afc8">50M</text>
+    <text x="500" y="300" fill="#e2eeff">Insertion</text><rect x="600" y="284" width="116" height="22" rx="5" fill="#c98500"/><text x="724" y="300" fill="#96afc8">25M</text>
+    <text x="500" y="344" fill="#e2eeff">Quick</text><rect x="600" y="328" width="5" height="22" rx="2" fill="#2fffc0"/><text x="613" y="344" fill="#96afc8">0.23M</text>
+    <text x="500" y="388" fill="#e2eeff">Merge</text><rect x="600" y="372" width="4" height="22" rx="2" fill="#2fffc0"/><text x="612" y="388" fill="#96afc8">0.12M</text>
+  </g>
+  </g>
+  <g transform="translate(0 46)">
+    <text x="70" y="150" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#2fffc0" letter-spacing="4">C++ · ALGORITHMS</text>
+    <text x="68" y="222" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="54" font-weight="800" fill="#e2eeff" letter-spacing="-1.5">Student</text>
+    <text x="68" y="282" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="54" font-weight="800" fill="#e2eeff" letter-spacing="-1.5">Management</text>
+    <text x="70" y="324" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" fill="#96afc8">5 sorting algorithms, measured</text>
+  </g>
+</svg>

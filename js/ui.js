@@ -226,6 +226,7 @@ function renderProjects() {
         <img src="${imageFallbackSrc('Loading project preview…')}" data-src="${p.img}" data-fallback-label="${p.title} preview unavailable" alt="${p.title} project preview" class="pj-img" loading="lazy" decoding="async"/>
         <div class="pj-hover" aria-hidden="true">
           <span class="ph-btn">Details</span>
+          ${p.live ? `<a href="${p.live}" target="_blank" rel="noopener noreferrer" class="ph-btn" onclick="event.stopPropagation()" aria-label="Open the live ${p.title}">↗ Live</a>` : ''}
           ${p.github ? `<a href="${p.github}" target="_blank" rel="noopener noreferrer" class="ph-btn" onclick="event.stopPropagation()" aria-label="View ${p.title} source code">⬡ Code</a>` : ''}
         </div>
       </div>
@@ -293,7 +294,11 @@ function openModal(id) {
   document.getElementById('m-tags').innerHTML = p.tech.map(t => `<span class="ptag">${t}</span>`).join('');
   const git = document.getElementById('m-git');
   git.href = p.github || '#';
-  git.parentElement.hidden = !p.github;
+  git.hidden = !p.github;
+  const live = document.getElementById('m-live');
+  live.href = p.live || '#';
+  live.hidden = !p.live;
+  git.parentElement.hidden = !p.github && !p.live;
   const modal = document.getElementById('modal');
   if (!modal) return;
   modalLastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
