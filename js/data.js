@@ -42,6 +42,13 @@ const CONTACT_EMAIL = 'hussein27007@gmail.com';
 
 /* ─── PROJECTS DATA ─── */
 const PJS = [
+  {id:6,title:'Escape Room Management System',cat:'Desktop Apps',feat:true,
+   desc:'Desktop app for an escape room business: rooms, bookings, filters, revenue reports and a customer leaderboard.',
+   full:'Designed and built from A to Z with C# Windows Forms and SQL Server, from the database schema to every screen. Staff sign in, manage themed rooms and bookings, filter bookings by customer, room, status and date, see revenue and booking reports for any date range, and rank customers by what they have spent. One shared theme gives every screen rounded, colour-coded buttons with hover and press feedback, and all database queries use parameters.',
+   hl:['Login with staff accounts','Dashboard with today\'s bookings and revenue','Booking filters and revenue reports','Customer leaderboard','One consistent theme across all 7 screens'],
+   img:IMG_PROJ6,
+   tech:['C#','Windows Forms','SQL Server','ADO.NET'],
+   github:'https://github.com/HusseinHany/EscapeRoomBookingSystem'},
   {id:1,title:'Finance Flare',cat:'C++ Engineering',feat:true,
    desc:'C++ OOP system with custom Data Structures & Algorithms for financial forecasting. Integrated with Power BI & Excel.',
    full:'Built with C++ and OOP principles, utilizing custom Data Structures and Algorithms for financial forecasting. Features real-time expense tracking, income categorization, investment portfolio analysis, and predictive financial modeling.',
