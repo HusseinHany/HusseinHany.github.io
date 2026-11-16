@@ -84,7 +84,7 @@ const PJS = [
    hl:['Admin, employee and client roles','Deposits, withdrawals and transfers','Hashed passwords and activity log','Class hierarchy built on inheritance'],
    img:IMG_PROJ4,
    tech:['C++','OOP','Inheritance','File I/O'],
-   github:''},
+   github:'https://github.com/HusseinHany/Bank_System'},
   {id:3,title:'Sales Performance Analytics',cat:'Data Analytics',feat:true,
    desc:'Northwind orders 1996–1998: $1.27M in sales across 89 companies, analysed in Excel and an interactive web dashboard.',
    full:'Excel pivot tables and dashboards for 806 Northwind order rows, rebuilt as an interactive web dashboard. Filter by year and region or click a bar to filter the whole page. Because the data covers July 1996 to May 1998, the dashboard compares the average per month, which grew from $34.7K to $51.4K to $88.1K. Every total matches the Excel pivots to the cent.',
