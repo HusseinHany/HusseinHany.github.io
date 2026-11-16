@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" role="img" aria-labelledby="t">
+<title id="t">Bank Management System class hierarchy</title>
+<style>
+.up{transform-box:fill-box;transform-origin:50% 100%;animation:up 7s cubic-bezier(.2,.8,.2,1) infinite both}
+.grow{transform-box:fill-box;transform-origin:0 50%;animation:grow 7s cubic-bezier(.2,.8,.2,1) infinite both}
+.in{animation:in 7s ease infinite both}
+.pop{transform-box:fill-box;transform-origin:50% 50%;animation:pop 7s cubic-bezier(.3,1.4,.5,1) infinite both}
+.ring{transform-box:fill-box;transform-origin:50% 50%;animation:ring 2.4s ease-out infinite}
+.bob{animation:bob 3.2s ease-in-out infinite alternate}
+.flow{stroke-dasharray:8 9;animation:flow 1s linear infinite}
+.caret{animation:blink 1.1s steps(1) infinite}
+.breathe{transform-box:fill-box;transform-origin:50% 50%;animation:breathe 6s ease-in-out infinite alternate}
+.sheen{animation:sheen 7s ease-in-out infinite}
+@keyframes up{0%{transform:scaleY(0)}20%,90%{transform:scaleY(1)}100%{transform:scaleY(0)}}
+@keyframes grow{0%{transform:scaleX(0)}20%,90%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+@keyframes in{0%{opacity:0;transform:translateY(10px)}12%,90%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes pop{0%{opacity:0;transform:scale(0)}10%,90%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.6)}}
+@keyframes ring{0%{opacity:.8;transform:scale(1)}100%{opacity:0;transform:scale(2.6)}}
+@keyframes bob{from{transform:translateY(-7px)}to{transform:translateY(7px)}}
+@keyframes flow{to{stroke-dashoffset:-34}}
+@keyframes blink{0%{opacity:1}50%{opacity:0}}
+@keyframes breathe{from{transform:scale(.9);opacity:.75}to{transform:scale(1.08);opacity:1}}
+@keyframes sheen{0%{transform:translateX(0)}30%,100%{transform:translateX(1500px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+.coin{animation:coin 2.6s cubic-bezier(.5,0,.5,1) infinite 2.2s both}@keyframes coin{0%{opacity:0;transform:translateX(0)}15%{opacity:1}80%{opacity:1;transform:translateX(74px)}100%{opacity:0;transform:translateX(74px)}}.dr160{stroke-dasharray:160;animation:dr160 7s ease-in-out infinite both}@keyframes dr160{0%{stroke-dashoffset:160}30%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:-160}}.dr36{stroke-dasharray:36;animation:dr36 7s ease-in-out infinite both}@keyframes dr36{0%{stroke-dashoffset:36}30%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:-36}}.dr38{stroke-dasharray:38;animation:dr38 7s ease-in-out infinite both}@keyframes dr38{0%{stroke-dashoffset:38}30%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:-38}}</style>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#010810"/><stop offset=".6" stop-color="#061522"/><stop offset="1" stop-color="#0a1e30"/></linearGradient>
+<radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#00c896" stop-opacity=".3"/><stop offset="1" stop-color="#00c896" stop-opacity="0"/></radialGradient>
+<linearGradient id="sh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".07"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="#96afc8" opacity=".14"/></pattern>
+
+</defs>
+<rect width="900" height="600" fill="url(#bg)"/>
+<rect width="900" height="600" fill="url(#dots)"/>
+<circle class="breathe" cx="670" cy="300" r="290" fill="url(#glow)"/>
+<g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+<g class="pop" style="animation-delay:0.10s"><rect x="600" y="118" width="130" height="64" rx="10" fill="#0a1e30" stroke="#2c4a6e" stroke-width="2"/><path d="M600 128 a10 10 0 0 1 10 -10 h110 a10 10 0 0 1 10 10 v18 h-130 z" fill="#163a5c"/><text x="665" y="138" text-anchor="middle" font-size="15" font-weight="700" fill="#e2eeff">Person</text><rect x="614" y="156" width="80" height="6" rx="3" fill="#2c4a6e"/><rect x="614" y="168" width="56" height="6" rx="3" fill="#2c4a6e"/></g>
+<path d="M665 182 L657 196 L673 196 Z" fill="#061522" stroke="#2fffc0" stroke-width="2.5" stroke-linejoin="round"/>
+<path class="dr38" d="M665 196 L665 232" fill="none" stroke="#2fffc0" stroke-width="2.5" style="animation-delay:0.50s"/>
+<path class="dr160" d="M665 232 L541 232 L541 266" fill="none" stroke="#2fffc0" stroke-width="2.5" style="animation-delay:0.75s"/>
+<path class="dr36" d="M665 232 L665 266" fill="none" stroke="#2fffc0" stroke-width="2.5" style="animation-delay:0.75s"/>
+<path class="dr160" d="M665 232 L789 232 L789 266" fill="none" stroke="#2fffc0" stroke-width="2.5" style="animation-delay:0.75s"/>
+<g class="pop" style="animation-delay:1.30s"><rect x="485" y="266" width="112" height="64" rx="10" fill="#0a1e30" stroke="#2c4a6e" stroke-width="2"/><path d="M485 276 a10 10 0 0 1 10 -10 h92 a10 10 0 0 1 10 10 v18 h-112 z" fill="#0b4a3c"/><text x="541" y="286" text-anchor="middle" font-size="15" font-weight="700" fill="#e2eeff">Client</text><rect x="499" y="304" width="64" height="6" rx="3" fill="#2c4a6e"/><rect x="499" y="316" width="44" height="6" rx="3" fill="#2c4a6e"/></g>
+<g class="pop" style="animation-delay:1.45s"><rect x="609" y="266" width="112" height="64" rx="10" fill="#0a1e30" stroke="#2c4a6e" stroke-width="2"/><path d="M609 276 a10 10 0 0 1 10 -10 h92 a10 10 0 0 1 10 10 v18 h-112 z" fill="#173e6e"/><text x="665" y="286" text-anchor="middle" font-size="15" font-weight="700" fill="#e2eeff">Employee</text><rect x="623" y="304" width="64" height="6" rx="3" fill="#2c4a6e"/><rect x="623" y="316" width="44" height="6" rx="3" fill="#2c4a6e"/></g>
+<g class="pop" style="animation-delay:1.60s"><rect x="733" y="266" width="112" height="64" rx="10" fill="#0a1e30" stroke="#2c4a6e" stroke-width="2"/><path d="M733 276 a10 10 0 0 1 10 -10 h92 a10 10 0 0 1 10 10 v18 h-112 z" fill="#5a420c"/><text x="789" y="286" text-anchor="middle" font-size="15" font-weight="700" fill="#e2eeff">Admin</text><rect x="747" y="304" width="64" height="6" rx="3" fill="#2c4a6e"/><rect x="747" y="316" width="44" height="6" rx="3" fill="#2c4a6e"/></g>
+<g class="in" style="animation-delay:1.90s">
+<rect x="485" y="384" width="120" height="58" rx="10" fill="#0f1826" stroke="#2c4a6e" stroke-width="2"/>
+<text x="545" y="409" text-anchor="middle" font-size="15" font-weight="700" fill="#e2eeff">Client 100</text>
+<text x="545" y="430" text-anchor="middle" font-size="13" fill="#d95926">sent</text>
+<rect x="725" y="384" width="120" height="58" rx="10" fill="#0f1826" stroke="#2c4a6e" stroke-width="2"/>
+<text x="785" y="409" text-anchor="middle" font-size="15" font-weight="700" fill="#e2eeff">Client 101</text>
+<text x="785" y="430" text-anchor="middle" font-size="13" fill="#2fffc0">received</text>
+<path class="flow" d="M611 413 H712" stroke="#f5c842" stroke-width="2.5" fill="none"/>
+<path d="M712 406 L722 413 L712 420 Z" fill="#f5c842"/>
+<text x="665" y="398" text-anchor="middle" font-size="15" font-weight="800" fill="#f5c842">$300.00</text>
+</g>
+<g class="coin"><circle cx="626" cy="413" r="10" fill="#f5c842"/><text x="626" y="418" text-anchor="middle" font-size="13" font-weight="800" fill="#5a4205">$</text></g>
+</g>
+<g transform="translate(0 46)">
+<text x="70" y="150" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="17" font-weight="700" fill="#2fffc0" letter-spacing="4">C++ · OOP</text>
+<rect class="caret" x="202" y="135" width="10" height="18" fill="#2fffc0"/>
+<text x="68" y="222" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="56" font-weight="800" fill="#e2eeff" letter-spacing="-1.5">Bank</text>
+<text x="68" y="286" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="56" font-weight="800" fill="#e2eeff" letter-spacing="-1.5">Management</text>
+<text x="70" y="330" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" fill="#96afc8">Admin · employee · client roles</text>
+<g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="700"><rect x="70" y="372" width="56" height="34" rx="17" fill="#0a1e30" stroke="#00c896" stroke-opacity=".6"/><text x="98" y="394" text-anchor="middle" fill="#e2eeff">C++</text><rect x="138" y="372" width="125" height="34" rx="17" fill="#0a1e30" stroke="#00c896" stroke-opacity=".6"/><text x="200.5" y="394" text-anchor="middle" fill="#e2eeff">Inheritance</text><rect x="275" y="372" width="99" height="34" rx="17" fill="#0a1e30" stroke="#00c896" stroke-opacity=".6"/><text x="324.5" y="394" text-anchor="middle" fill="#e2eeff">File I/O</text></g>
+</g>
+<g transform="skewX(-18)"><rect class="sheen" x="-420" y="0" width="220" height="600" fill="url(#sh)"/></g>
+</svg>
