@@ -179,23 +179,64 @@ page('project-student.svg', 'Student Management System sorting benchmark', 'C++ 
      ['5 sorting algorithms, measured'], ['C++', 'Sorting', 'AVL tree'], art, c, size=54)
 
 # ── Escape Room ──────────────────────────────────────────────────────
+# The app's real dashboard: its Theme.cs colours, sidebar buttons, the four
+# cards and the bookings grid, filled with the sample data from
+# database-setup.sql (as if it were 9 June 2026).
 c = Cover()
-art = f'''<g transform="translate(560 120)">
-<rect x="0" y="0" width="200" height="340" rx="100" ry="100" fill="url(#door)" stroke="{EM}" stroke-opacity=".55" stroke-width="3"/>
-<rect x="22" y="40" width="156" height="300" rx="78" ry="78" fill="none" stroke="{LINE}" stroke-width="2"/>
-<circle class="ring" cx="100" cy="200" r="34" fill="none" stroke="{EM2}" stroke-width="2"/>
-<circle class="ring" cx="100" cy="200" r="34" fill="none" stroke="{EM2}" stroke-width="2" style="animation-delay:1.2s"/>
-<g class="breathe"><circle cx="100" cy="185" r="16" fill="{EM2}"/><path d="M92 196 h16 l6 44 h-28 z" fill="{EM2}"/></g>
+BG_, SURF, SURF2, BORD, INK_, MUT, ACC, ACCL, EDIT, DANG = ('#0b101c', '#131c2e', '#19253c', '#2c3e5c', '#e8eef8',
+                                                         '#96a8c0', '#00a884', '#40e0ba', '#d6961e', '#ce3c3c')
+side = ['Rooms', 'Bookings', 'Filter', 'Leaderboard', 'Reports']
+sb = ''
+for i, name in enumerate(side):
+    y = 70 + i * 36
+    sb += (f'<rect x="10" y="{y}" width="84" height="28" rx="7" fill="{SURF2}" stroke="{BORD}" stroke-width="1.2"/>'
+           f'<rect class="hov" x="10" y="{y}" width="84" height="28" rx="7" fill="{ACC}" fill-opacity=".18" stroke="{ACCL}" stroke-width="1.6" style="animation-delay:{i * 1.4:.1f}s"/>'
+           f'<text x="52" y="{y + 18}" text-anchor="middle" font-size="11" font-weight="600" fill="{INK_}">{name}</text>')
+sb += (f'<rect x="10" y="262" width="84" height="26" rx="7" fill="{SURF2}" stroke="{DANG}" stroke-opacity=".7" stroke-width="1.2"/>'
+       f'<text x="52" y="279" text-anchor="middle" font-size="11" font-weight="600" fill="#f0a0a0">Logout</text>')
+cards = [("Today's Bookings", '1', ACCL), ("Today's Revenue", 'EGP 3,150', ACCL), ('Weekly Revenue', 'EGP 7,350', EDIT), ('Available Rooms', '20', ACCL)]
+cd = ''
+for i, (lab, val, col) in enumerate(cards):
+    x, y = 112 + (i % 2) * 148, 48 + (i // 2) * 62
+    cd += (f'<g class="pop"{c.d(0.2 + i * 0.15)}><rect x="{x}" y="{y}" width="140" height="54" rx="9" fill="{SURF}" stroke="{BORD}" stroke-width="1.2"/>'
+           f'<rect x="{x}" y="{y + 10}" width="3" height="34" rx="1.5" fill="{col}"/>'
+           f'<text x="{x + 12}" y="{y + 20}" font-size="10" fill="{MUT}">{lab}</text>'
+           f'<text x="{x + 12}" y="{y + 42}" font-size="17" font-weight="800" fill="{INK_}">{val}</text></g>')
+rows = [('Youssef Tarek', 'Lost Pyramid', 'Paid', ACC), ('Omar Khaled', 'Zombie Escape', 'Paid', ACC),
+        ('Mariam Adel', 'Secret Prison', 'Cancelled', DANG), ('Sarah Ahmed', 'The Cyber Vault', 'Pending', EDIT)]
+gr = (f'<text x="112" y="190" font-size="11" font-weight="700" fill="{INK_}">Top Bookings</text>'
+      f'<rect x="112" y="198" width="288" height="20" rx="5" fill="{SURF2}"/>'
+      f'<g font-size="9.5" font-weight="700" fill="{MUT}"><text x="120" y="211">Customer</text><text x="215" y="211">Room</text><text x="340" y="211">Status</text></g>')
+for i, (cust, room, st, col) in enumerate(rows):
+    y = 222 + i * 20
+    gr += (f'<g class="in"{c.d(1.0 + i * 0.15)}><rect x="112" y="{y}" width="288" height="18" fill="{SURF if i % 2 else BG_}"/>'
+           f'<text x="120" y="{y + 13}" font-size="10" fill="{INK_}">{cust}</text><text x="215" y="{y + 13}" font-size="10" fill="{INK_}">{room}</text>'
+           f'<rect x="336" y="{y + 3}" width="58" height="13" rx="6.5" fill="{col}" fill-opacity=".2"/>'
+           f'<text x="365" y="{y + 13}" text-anchor="middle" font-size="9" font-weight="700" fill="{col}">{st}</text></g>')
+art = f'''<g transform="translate(450 112)" font-family="'Segoe UI', -apple-system, Helvetica, Arial, sans-serif">
+<rect x="-6" y="-6" width="422" height="350" rx="16" fill="#000" opacity=".35"/>
+<rect width="410" height="338" rx="12" fill="{BG_}" stroke="{BORD}" stroke-width="1.5"/>
+<path d="M0 12 a12 12 0 0 1 12 -12 h386 a12 12 0 0 1 12 12 v14 h-410 z" fill="#0e1524"/>
+<text x="12" y="17" font-size="10" fill="{MUT}">Escape Room Management System</text>
+<g stroke="{MUT}" stroke-width="1.2"><line x1="352" y1="13" x2="360" y2="13"/><rect x="370" y="9" width="8" height="8" fill="none"/><line x1="389" y1="9" x2="397" y2="17"/><line x1="397" y1="9" x2="389" y2="17"/></g>
+<rect x="0" y="26" width="104" height="312" fill="#0c1222"/>
+<g transform="translate(0 0)">
+<text x="52" y="52" text-anchor="middle" font-size="10.5" font-weight="800" fill="{ACCL}" letter-spacing=".6">ESCAPE ROOM</text>
+{sb}
 </g>
-<g transform="translate(470 430) rotate(-28)"><g class="bob">
-<circle cx="0" cy="0" r="22" fill="none" stroke="{GOLD}" stroke-width="7"/>
-<rect x="20" y="-4" width="78" height="8" rx="3" fill="{GOLD}"/>
-<rect x="74" y="4" width="8" height="14" rx="2" fill="{GOLD}"/>
-<rect x="88" y="4" width="8" height="10" rx="2" fill="{GOLD}"/>
+<text x="112" y="42" font-size="13" font-weight="700" fill="{INK_}">Welcome, Admin</text>
+<text x="400" y="42" text-anchor="end" font-size="9.5" fill="{MUT}">Tuesday, 09 Jun 2026 <tspan class="tick">|</tspan> 18:42</text>
+{cd}
+{gr}
+</g>
+<g transform="translate(838 452)"><g class="bob">
+<circle r="22" fill="{GOLD}" opacity=".95"/><circle cy="-3" r="6" fill="#5a4205"/><path d="M-3 0 h6 l2 11 h-10 z" fill="#5a4205"/>
 </g></g>'''
-page('project-6.svg', 'Escape Room Management System', 'DESKTOP APP', ['Escape Room', 'Management'],
-     ['Rooms · Bookings · Reports · Leaderboard'], ['C#', 'Windows Forms', 'SQL Server'], art, c,
-     defs='<linearGradient id="door" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f2a40"/><stop offset="1" stop-color="#081a2a"/></linearGradient>')
+c.css.add('.hov{opacity:0;animation:hov 7s ease-in-out infinite both}'
+          '@keyframes hov{0%{opacity:0}4%,16%{opacity:1}22%,100%{opacity:0}}'
+          '.tick{animation:blink 1s steps(1) infinite}')
+page('project-6.svg', 'Escape Room Management System dashboard', 'DESKTOP APP · C#', ['Escape Room', 'Management'],
+     ['Bookings · reports · leaderboard'], ['C#', 'Windows Forms', 'SQL Server'], art, c)
 
 # ── Finance Flare ────────────────────────────────────────────────────
 c = Cover()
