@@ -518,6 +518,7 @@ async function submitForm(e) {
   const email = document.getElementById('f-email').value.trim();
   const msg = document.getElementById('f-msg').value.trim();
   if (!name || !email || !msg) { showToast('Please fill in all fields.', true); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { showToast('Please enter a valid email address.', true); document.getElementById('f-email').focus(); return; }
   btn.textContent = 'Sending';
   btn.classList.add('sending');
   btn.disabled = true;

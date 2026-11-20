@@ -814,6 +814,8 @@ button.sk-chip{font:inherit;font-size:.76rem;width:100%;cursor:pointer;color:var
 .m-demo{width:100%;height:auto;display:block}
 .m-btn{font-size:.88rem;padding:.75rem 1.6rem}
 .m-nav{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid var(--border)}
+/* keep previous/next reachable without scrolling the pop-up */
+.m-nav{position:sticky;bottom:0;z-index:2;padding-bottom:1rem;background:var(--navy3)}
 .m-step{display:inline-flex;align-items:center;gap:.45rem;max-width:42%;padding:.55rem .95rem;border:1px solid var(--border);border-radius:50px;font-size:.78rem;color:var(--sub);transition:all .25s var(--ease-out)}
 .m-step-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .m-step:hover{border-color:var(--em);color:var(--em);background:rgba(0,200,150,.08)}
